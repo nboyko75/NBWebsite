@@ -1,0 +1,52 @@
+{
+  "retrieved": "2026-10-13",
+  "store": "https://apps.microsoft.com/detail/9ns0crbdgtv6",
+  "title": "Pdf&DocExplorer",
+  "developer": "Nick Boiko",
+  "features": [
+    "Browse files with a folder tree, file list, and integrated document preview.",
+    "Search by file name or text within supported documents.",
+    "Preview PDFs with page thumbnails, zoom, and scrolling.",
+    "Preview Word, Excel, and PowerPoint files using installed Microsoft Office applications.",
+    "View images, animated GIFs, and supported text files.",
+    "Keep multiple documents available in pinned preview tabs.",
+    "Rotate, delete, reorder, and import PDF pages, with multi-page selection.",
+    "Convert images to PDF and export PDF pages as images.",
+    "Optimize PDF file size and adjust page widths.",
+    "Scan documents directly into your selected folder.",
+    "Access favorite folders and standard Windows locations quickly.",
+    "Copy, move, rename, and delete files, and restore items from the Recycle Bin.",
+    "Merge similar files"
+  ],
+  "description": "Pdf&DocExplorer helps you find, preview, and manage documents in one place. Browse folders, search file contents, and work with PDFs using an integrated preview pane.\n\nPreviewing Microsoft Word, Excel, and PowerPoint documents requires the corresponding Microsoft Office applications to be installed. HTML-based previews use Microsoft Edge WebView2 Runtime.\n\nBROWSE AND FIND FILES\n• Navigate folders using a familiar folder tree and file list.\n• Keep frequently used locations close at hand with Favorites and standard Windows shortcuts.\n• Search by file name or text within supported documents.\n• Jump from a search result directly to the file’s location.\n\nPREVIEW DOCUMENTS\n• View PDFs with page thumbnails, zoom, and scrolling.\n• Preview Word documents, Excel spreadsheets, and PowerPoint presentations.\n• View images, animated GIFs, and supported text files.\n• Keep documents open in pinned preview tabs while browsing other files.\n\nWORK WITH PDFs\n• Rotate, delete, and reorder pages.\n• Select multiple pages to perform operations together.\n• Import pages from another PDF.\n• Convert images to PDF and export PDF pages as images.\n• Adjust page widths and optimize PDF file size.\n\nMANAGE YOUR WORKSPACE\n• Create folders and copy, move, rename, or delete files.\n• Browse the Recycle Bin and restore deleted items.\n• Import documents from a connected scanner.\n• Resume browsing from your last-used folder.\n\nPdf&DocExplorer brings file navigation, document previews, and practical PDF tools together in a single Windows application.",
+  "images": [
+    {
+      "file": "icon.png",
+      "url": "https://store-images.s-microsoft.com/image/apps.63352.14373316195958305.385a6fb9-0806-4050-b7af-37e71ea89820.711986ce-a26b-47ba-a92b-77766f3d01cb",
+      "caption": ""
+    },
+    {
+      "file": "introduction.png",
+      "url": "https://store-images.s-microsoft.com/image/apps.18798.14373316195958305.f923c370-9517-4d31-a059-deb6287be2a9.6af6f343-6adb-49ed-b73d-71b84b727bcb",
+      "caption": "Introduction"
+    },
+    {
+      "file": "search.png",
+      "url": "https://store-images.s-microsoft.com/image/apps.63939.14373316195958305.f923c370-9517-4d31-a059-deb6287be2a9.d826f55e-9590-4bc8-899e-84267282a829",
+      "caption": "Advanced search system"
+    },
+    {
+      "file": "tabs.png",
+      "url": "https://store-images.s-microsoft.com/image/apps.34158.14373316195958305.f923c370-9517-4d31-a059-deb6287be2a9.f5fc5874-e709-41c3-a1cf-104de66c18f8",
+      "caption": "Tabbed panels"
+    },
+    {
+      "file": "pdf.png",
+      "url": "https://store-images.s-microsoft.com/image/apps.51243.14373316195958305.f923c370-9517-4d31-a059-deb6287be2a9.2ee03d55-d362-4ade-8cf3-3086364e2dbe",
+      "caption": "Essential operations with pdf"
+    }
+  ],
+  "github": "https://github.com/nboyko75/Excel-utils",
+  "localesSource": "D:/Projects/DocExplorer/docs/README.md",
+  "storeLocaleNote": "Store metadata lists English; the application source documents eleven interface locales."
+}
