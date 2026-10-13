@@ -48,5 +48,12 @@
   ],
   "github": "https://github.com/nboyko75/Excel-utils",
   "localesSource": "D:/Projects/DocExplorer/docs/README.md",
-  "storeLocaleNote": "Store metadata lists English; the application source documents eleven interface locales."
+  "storeLocaleNote": "Store metadata lists English; the application source documents eleven interface locales.",
+  "localizedScreenshots": {
+    "source": "artifacts/Screenshots",
+    "publicDirectory": "public/media/doxexplorer/screenshots",
+    "manifest": "lib/screenshot-manifest.json",
+    "localeMapping": "lib/screenshot-config.ts",
+    "note": "User-supplied images used without altering their content; Korean uses the English us folder. Earlier Store screenshot URLs above describe the retained legacy assets."
+  }
 }

@@ -27,18 +27,50 @@ For browser checks, run `npm start` in one terminal and `npm run test:e2e` in an
 
 Complete page translations: English, Ukrainian, German, French, Spanish, Italian, Brazilian Portuguese, Japanese, Korean, Simplified Chinese, and Russian.
 
-Language priority: `?lang=uk` URL parameter → saved selection → browser language → English. Selection updates the page, HTML language, title, description, URL, and local storage without navigation. Product names and original English screenshot/video contents stay unchanged. Website translations are authored for this portfolio and should receive native-speaker review before publication.
+Language priority: `?lang=uk` URL parameter → saved selection → browser language → English. Selection updates the page, screenshots, HTML language, title, description, URL, and local storage without navigation. Product names and original media contents stay unchanged. Website translations are authored for this portfolio and should receive native-speaker review before publication.
 
 The eleven locales were verified against `D:/Projects/DocExplorer/docs/README.md` and application localization files. Microsoft Store currently reports only English in its listing metadata, so the application language list is used as requested.
 
 ## Content and media
 
 - Official title and developer: **Pdf&DocExplorer**, **Nick Boiko**.
-- Description, features, logo, four screenshots, and public support email: https://apps.microsoft.com/detail/9ns0crbdgtv6
+- Description, features, logo, and public support email: https://apps.microsoft.com/detail/9ns0crbdgtv6
 - Microsoft Store asset URLs and content provenance: `content/sources.json`.
 - Excel content: https://github.com/nboyko75/Excel-utils — Excel macro workbooks for printing mirrored page margins, in English and Ukrainian.
 - Original trailer copied from `D:/Projects/Doc/DocExplorer/Video/Trailer4_2.mp4` to `public/media/doxexplorer/trailer.mp4` (about 101 MB / 7 min 28 sec). It loads only when its dialog opens. The poster is extracted from the supplied video.
 - DM Sans font files are locally hosted; license is in `public/fonts/OFL.txt`.
+
+### Localized DoxExplorer screenshots
+
+The gallery uses all `Screenshot<number>.png` files in each corresponding folder
+under `artifacts/Screenshots`, sorted numerically. Both the page and enlarged
+viewer follow the selected language, with translated captions and dynamic counts.
+
+| Website locale | Source subfolder |
+| --- | --- |
+| `en` | `us` |
+| `uk` | `Ua` |
+| `de` | `de` |
+| `fr` | `fr` |
+| `es` | `es` |
+| `it` | `it` |
+| `pt-BR` | `pt` |
+| `ja` | `jp` |
+| `ko` | `us` (English, as requested) |
+| `zh-CN` | `cn` |
+| `ru` | `Ru` |
+
+`npm run media:sync` copies the supplied images, without modifying their contents,
+to `public/media/doxexplorer/screenshots/` and writes `lib/screenshot-manifest.json`.
+It runs automatically before `npm run dev` and `npm run build`. Keep the public
+copies and manifest in version control: a clean checkout can build from these
+copies even without the ignored `artifacts` folder. Restart development or rebuild
+after changing the source images. Unmapped folders such as `Old` and `sp` are unused.
+The trailer remains in English; screenshot text is exactly as supplied.
+
+The four `artifacts/icon-{16,32,64,512}.png` previews use an azure (`#006fbb`)
+background and retain transparent corners. The editable `public/icon.svg` is
+maintained separately.
 
 ### Add Excel-utils presentation media
 

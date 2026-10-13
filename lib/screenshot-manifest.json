@@ -1,0 +1,544 @@
+{
+  "us": [
+    {
+      "src": "/media/doxexplorer/screenshots/us/Screenshot1.png",
+      "number": 1,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/us/Screenshot2.png",
+      "number": 2,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/us/Screenshot3.png",
+      "number": 3,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/us/Screenshot4.png",
+      "number": 4,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/us/Screenshot5.png",
+      "number": 5,
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/us/Screenshot6.png",
+      "number": 6,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/us/Screenshot7.png",
+      "number": 7,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/us/Screenshot8.png",
+      "number": 8,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/us/Screenshot9.png",
+      "number": 9,
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "Ua": [
+    {
+      "src": "/media/doxexplorer/screenshots/Ua/Screenshot1.png",
+      "number": 1,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ua/Screenshot2.png",
+      "number": 2,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ua/Screenshot3.png",
+      "number": 3,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ua/Screenshot4.png",
+      "number": 4,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ua/Screenshot5.png",
+      "number": 5,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ua/Screenshot6.png",
+      "number": 6,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ua/Screenshot7.png",
+      "number": 7,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ua/Screenshot8.png",
+      "number": 8,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ua/Screenshot9.png",
+      "number": 9,
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "de": [
+    {
+      "src": "/media/doxexplorer/screenshots/de/Screenshot1.png",
+      "number": 1,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/de/Screenshot2.png",
+      "number": 2,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/de/Screenshot3.png",
+      "number": 3,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/de/Screenshot4.png",
+      "number": 4,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/de/Screenshot5.png",
+      "number": 5,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/de/Screenshot6.png",
+      "number": 6,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/de/Screenshot7.png",
+      "number": 7,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/de/Screenshot8.png",
+      "number": 8,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/de/Screenshot9.png",
+      "number": 9,
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "fr": [
+    {
+      "src": "/media/doxexplorer/screenshots/fr/Screenshot1.png",
+      "number": 1,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/fr/Screenshot2.png",
+      "number": 2,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/fr/Screenshot3.png",
+      "number": 3,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/fr/Screenshot4.png",
+      "number": 4,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/fr/Screenshot5.png",
+      "number": 5,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/fr/Screenshot6.png",
+      "number": 6,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/fr/Screenshot7.png",
+      "number": 7,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/fr/Screenshot8.png",
+      "number": 8,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/fr/Screenshot9.png",
+      "number": 9,
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "es": [
+    {
+      "src": "/media/doxexplorer/screenshots/es/Screenshot1.png",
+      "number": 1,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/es/Screenshot2.png",
+      "number": 2,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/es/Screenshot3.png",
+      "number": 3,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/es/Screenshot4.png",
+      "number": 4,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/es/Screenshot5.png",
+      "number": 5,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/es/Screenshot6.png",
+      "number": 6,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/es/Screenshot7.png",
+      "number": 7,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/es/Screenshot8.png",
+      "number": 8,
+      "width": 1366,
+      "height": 768
+    }
+  ],
+  "it": [
+    {
+      "src": "/media/doxexplorer/screenshots/it/Screenshot1.png",
+      "number": 1,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/it/Screenshot2.png",
+      "number": 2,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/it/Screenshot3.png",
+      "number": 3,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/it/Screenshot4.png",
+      "number": 4,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/it/Screenshot5.png",
+      "number": 5,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/it/Screenshot6.png",
+      "number": 6,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/it/Screenshot7.png",
+      "number": 7,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/it/Screenshot8.png",
+      "number": 8,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/it/Screenshot9.png",
+      "number": 9,
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "pt": [
+    {
+      "src": "/media/doxexplorer/screenshots/pt/Screenshot1.png",
+      "number": 1,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/pt/Screenshot2.png",
+      "number": 2,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/pt/Screenshot3.png",
+      "number": 3,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/pt/Screenshot4.png",
+      "number": 4,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/pt/Screenshot5.png",
+      "number": 5,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/pt/Screenshot6.png",
+      "number": 6,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/pt/Screenshot7.png",
+      "number": 7,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/pt/Screenshot8.png",
+      "number": 8,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/pt/Screenshot9.png",
+      "number": 9,
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "jp": [
+    {
+      "src": "/media/doxexplorer/screenshots/jp/Screenshot1.png",
+      "number": 1,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/jp/Screenshot2.png",
+      "number": 2,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/jp/Screenshot3.png",
+      "number": 3,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/jp/Screenshot4.png",
+      "number": 4,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/jp/Screenshot5.png",
+      "number": 5,
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/jp/Screenshot6.png",
+      "number": 6,
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/jp/Screenshot7.png",
+      "number": 7,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/jp/Screenshot8.png",
+      "number": 8,
+      "width": 1366,
+      "height": 768
+    }
+  ],
+  "cn": [
+    {
+      "src": "/media/doxexplorer/screenshots/cn/Screenshot1.png",
+      "number": 1,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/cn/Screenshot2.png",
+      "number": 2,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/cn/Screenshot3.png",
+      "number": 3,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/cn/Screenshot4.png",
+      "number": 4,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/cn/Screenshot5.png",
+      "number": 5,
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/cn/Screenshot6.png",
+      "number": 6,
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/cn/Screenshot7.png",
+      "number": 7,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/cn/Screenshot8.png",
+      "number": 8,
+      "width": 1366,
+      "height": 768
+    }
+  ],
+  "Ru": [
+    {
+      "src": "/media/doxexplorer/screenshots/Ru/Screenshot1.png",
+      "number": 1,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ru/Screenshot2.png",
+      "number": 2,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ru/Screenshot3.png",
+      "number": 3,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ru/Screenshot4.png",
+      "number": 4,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ru/Screenshot5.png",
+      "number": 5,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ru/Screenshot6.png",
+      "number": 6,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ru/Screenshot7.png",
+      "number": 7,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ru/Screenshot8.png",
+      "number": 8,
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "src": "/media/doxexplorer/screenshots/Ru/Screenshot9.png",
+      "number": 9,
+      "width": 1672,
+      "height": 941
+    }
+  ]
+}

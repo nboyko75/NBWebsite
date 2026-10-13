@@ -5,6 +5,9 @@
   "type": "module",
   "engines": { "node": ">=22.18.0" },
   "scripts": {
+    "media:sync": "node scripts/sync-screenshots.mjs",
+    "predev": "npm run media:sync",
+    "prebuild": "npm run media:sync",
     "dev": "next dev --hostname 127.0.0.1",
     "build": "next build",
     "start": "node scripts/serve.mjs",

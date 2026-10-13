@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { dictionaries, locales, resolveLocale, type Locale } from "../lib/i18n";
-import { media } from "../lib/media";
+import { getScreenshots, media } from "../lib/media";
 
 type IconName = "arrow" | "up" | "play" | "globe" | "github" | "check" | "windows" | "close" | "expand" | "mail";
 function Icon({ name, className = "" }: { name: IconName; className?: string }) {
@@ -32,7 +32,9 @@ export default function Portfolio({ excelMedia }: { excelMedia: { image: boolean
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLElement | null>(null);
   const copy = dictionaries[locale];
-  const captions = [copy.overview, copy.search, copy.tabs, copy.pdf];
+  const screenshots = getScreenshots(locale);
+  const galleryIndex = Math.min(activeImage, screenshots.length - 1);
+  const currentScreenshot = screenshots[galleryIndex];
 
   useEffect(() => {
     function readLanguage() {
@@ -74,7 +76,7 @@ export default function Portfolio({ excelMedia }: { excelMedia: { image: boolean
     setModal(null);
     trigger.current?.focus();
   }
-  function moveImage(delta: number) { setActiveImage(current => (current + delta + media.screenshots.length) % media.screenshots.length); }
+  function moveImage(delta: number) { setActiveImage(current => (Math.min(current, screenshots.length - 1) + delta + screenshots.length) % screenshots.length); }
 
   return <>
     <a className="skip-link" href="#main">{copy.skip}</a>
@@ -96,9 +98,10 @@ export default function Portfolio({ excelMedia }: { excelMedia: { image: boolean
           <div className="project-topline"><span className="eyebrow"><span className="status-dot" />{copy.desktop}</span><span className="project-number">01 — 02</span></div>
           <div className="dox-intro"><div><div className="app-name"><img src={media.doxIcon} alt="" width="40" height="40" /><h3 id="dox-title">Pdf&DocExplorer</h3></div><h4 className="project-tagline">{copy.docTagline}</h4></div><div className="project-description"><p>{copy.docDescription}</p><div className="project-actions"><a href={STORE} className="button primary" target="_blank" rel="noreferrer"><Icon name="windows" />{copy.store}<Icon name="up" /></a><button className="button text-button" onClick={() => openModal("dox-video")}><Icon name="play" />{copy.watch}</button></div></div></div>
           <div className="gallery" aria-label={copy.gallery}>
-            <div className="gallery-toolbar"><span><span className="window-dots" aria-hidden="true">● ● ●</span> Pdf&DocExplorer</span><span className="gallery-counter">0{activeImage + 1} / 04</span></div>
-            <button className="screenshot-button" aria-label={`${copy.enlarge}: ${captions[activeImage]}`} onClick={() => openModal("image")}><img src={media.screenshots[activeImage]} width="1366" height="768" alt={`Pdf&DocExplorer — ${captions[activeImage]}`} fetchPriority="high" /><span className="expand-icon"><Icon name="expand" /></span></button>
-            <div className="gallery-navigation"><div className="gallery-tabs">{captions.map((caption, index) => <button key={index} aria-pressed={activeImage === index} onClick={() => setActiveImage(index)}><span className="tab-number">0{index + 1}</span>{caption}</button>)}</div><div className="gallery-arrows"><button aria-label={copy.previous} onClick={() => moveImage(-1)}>←</button><button aria-label={copy.next} onClick={() => moveImage(1)}>→</button></div></div>
+            <div className="gallery-toolbar"><span><span className="window-dots" aria-hidden="true">● ● ●</span> Pdf&DocExplorer</span><span className="gallery-counter">{String(galleryIndex + 1).padStart(2, "0")} / {String(screenshots.length).padStart(2, "0")}</span></div>
+            <button className="screenshot-button" aria-label={`${copy.enlarge}: ${currentScreenshot.caption}`} onClick={() => openModal("image")}><img src={currentScreenshot.src} width={currentScreenshot.width} height={currentScreenshot.height} alt={`Pdf&DocExplorer — ${currentScreenshot.caption}`} fetchPriority="high" /><span className="expand-icon"><Icon name="expand" /></span></button>
+            <div className="gallery-navigation"><span className="gallery-caption" aria-live="polite">{currentScreenshot.caption}</span><div className="gallery-arrows"><button aria-label={copy.previous} onClick={() => moveImage(-1)}>←</button><button aria-label={copy.next} onClick={() => moveImage(1)}>→</button></div></div>
+            <div className="gallery-thumbnails">{screenshots.map((screenshot, index) => <button key={screenshot.src} aria-label={screenshot.caption} title={screenshot.caption} aria-pressed={galleryIndex === index} onClick={() => setActiveImage(index)}><img src={screenshot.src} width={screenshot.width} height={screenshot.height} alt="" loading="lazy" /><span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span></button>)}</div>
           </div>
           <ul className="feature-list">{[copy.feature1, copy.feature2, copy.feature3].map(feature => <li key={feature}><span className="check-circle"><Icon name="check" /></span>{feature}</li>)}</ul>
           <div className="project-notes"><p>{copy.requirements}</p><p>{copy.screenshotNote}</p></div>
@@ -116,8 +119,8 @@ export default function Portfolio({ excelMedia }: { excelMedia: { image: boolean
       <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="container contact-inner"><div><div className="eyebrow">03 / {copy.contact}</div><h2 id="contact-title">{copy.contactTitle}</h2><p>{copy.contactDescription}</p></div><a href="mailto:nboyko75@gmail.com" className="button primary">{copy.email}<Icon name="up" /></a></div></section>
     </main>
     <footer className="container"><a className="brand footer-brand" href="#top"><span className="monogram">nb<span>.</span></span><span>© {new Date().getFullYear()} Nick Boiko</span></a><span>{copy.footer}</span><a href="#top" className="text-link">{copy.backTop}<span aria-hidden="true">↑</span></a></footer>
-    <dialog ref={dialog} className="media-dialog" aria-label={modal === "image" ? captions[activeImage] : copy.watch} onCancel={event => { event.preventDefault(); closeModal(); }} onClick={event => { if (event.target === event.currentTarget) closeModal(); }} onKeyDown={event => { if (modal === "image" && event.key === "ArrowLeft") moveImage(-1); if (modal === "image" && event.key === "ArrowRight") moveImage(1); }}>
-      {modal && <div className="dialog-content"><div className="dialog-toolbar"><span>{modal === "image" ? captions[activeImage] : `${modal === "dox-video" ? "Pdf&DocExplorer" : "Excel-utils"} — ${copy.watch}`}</span><button onClick={closeModal} aria-label={copy.close} autoFocus><Icon name="close" /></button></div>{modal === "image" ? <><img src={media.screenshots[activeImage]} alt={`Pdf&DocExplorer — ${captions[activeImage]}`} /><div className="dialog-gallery-controls"><button onClick={() => moveImage(-1)} aria-label={copy.previous}>←</button><span>{activeImage + 1} / {media.screenshots.length}</span><button onClick={() => moveImage(1)} aria-label={copy.next}>→</button></div></> : <video controls autoPlay playsInline preload="none" poster={modal === "dox-video" ? media.doxPoster : excelMedia.poster ? media.excelPoster : undefined} src={modal === "dox-video" ? media.doxTrailer : media.excelTrailer}><a href={modal === "dox-video" ? media.doxTrailer : media.excelTrailer}>{copy.trailerUnavailable}</a></video>}</div>}
+    <dialog ref={dialog} className="media-dialog" aria-label={modal === "image" ? currentScreenshot.caption : copy.watch} onCancel={event => { event.preventDefault(); closeModal(); }} onClick={event => { if (event.target === event.currentTarget) closeModal(); }} onKeyDown={event => { if (modal === "image" && event.key === "ArrowLeft") moveImage(-1); if (modal === "image" && event.key === "ArrowRight") moveImage(1); }}>
+      {modal && <div className="dialog-content"><div className="dialog-toolbar"><span>{modal === "image" ? currentScreenshot.caption : `${modal === "dox-video" ? "Pdf&DocExplorer" : "Excel-utils"} — ${copy.watch}`}</span><button onClick={closeModal} aria-label={copy.close} autoFocus><Icon name="close" /></button></div>{modal === "image" ? <><img src={currentScreenshot.src} alt={`Pdf&DocExplorer — ${currentScreenshot.caption}`} /><div className="dialog-gallery-controls"><button onClick={() => moveImage(-1)} aria-label={copy.previous}>←</button><span>{galleryIndex + 1} / {screenshots.length}</span><button onClick={() => moveImage(1)} aria-label={copy.next}>→</button></div></> : <video controls autoPlay playsInline preload="none" poster={modal === "dox-video" ? media.doxPoster : excelMedia.poster ? media.excelPoster : undefined} src={modal === "dox-video" ? media.doxTrailer : media.excelTrailer}><a href={modal === "dox-video" ? media.doxTrailer : media.excelTrailer}>{copy.trailerUnavailable}</a></video>}</div>}
     </dialog>
   </>;
 }

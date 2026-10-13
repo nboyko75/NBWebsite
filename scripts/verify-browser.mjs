@@ -15,6 +15,7 @@ try {
   await page.goto(process.env.TEST_URL || "http://127.0.0.1:3000", { waitUntil: "networkidle" });
   assert.equal(await page.locator("h1").innerText(), "Small tools.\nBetter workflows.");
   assert.equal(await page.locator("select option").count(), 11);
+  const screenshotSets = { en: ["us", 9], uk: ["Ua", 9], de: ["de", 9], fr: ["fr", 9], es: ["es", 8], it: ["it", 9], "pt-BR": ["pt", 9], ja: ["jp", 8], ko: ["us", 9], "zh-CN": ["cn", 8], ru: ["Ru", 9] };
   for (const locale of ["uk", "de", "fr", "es", "it", "pt-BR", "ja", "ko", "zh-CN", "ru", "en"]) {
     await page.locator("select").selectOption(locale);
     await page.waitForFunction(expected => document.documentElement.lang === expected, locale);
@@ -22,13 +23,26 @@ try {
     assert.equal(await page.evaluate(() => localStorage.getItem("portfolio-language")), locale);
     assert.ok(await page.locator("h1").innerText());
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `Overflow in ${locale}`);
+    const [folder, count] = screenshotSets[locale];
+    assert.equal(await page.locator(".gallery-thumbnails button").count(), count);
+    for (let index = 0; index < count; index++) {
+      await page.locator(".gallery-thumbnails button").nth(index).click();
+      const screenshot = page.locator(".screenshot-button img");
+      assert.equal(await screenshot.getAttribute("src"), `/media/doxexplorer/screenshots/${folder}/Screenshot${index + 1}.png`);
+      await screenshot.evaluate(image => image.decode());
+      assert.equal(await page.locator(".gallery-counter").innerText(), `${String(index + 1).padStart(2, "0")} / ${String(count).padStart(2, "0")}`);
+    }
   }
-  await page.getByRole("button", { name: "Find your files", exact: false }).click();
-  assert.ok((await page.locator(".screenshot-button img").getAttribute("src")).endsWith("search.png"));
+  // Switching away from the ninth slide to an eight-image locale clamps safely.
+  await page.locator("select").selectOption("ja");
+  assert.ok((await page.locator(".screenshot-button img").getAttribute("src")).endsWith("/jp/Screenshot8.png"));
+  await page.locator("select").selectOption("en");
+  await page.getByRole("button", { name: "Find your files", exact: true }).click();
+  assert.ok((await page.locator(".screenshot-button img").getAttribute("src")).endsWith("/us/Screenshot4.png"));
   await page.getByRole("button", { name: "Enlarge screenshot: Find your files" }).click();
   assert.equal(await page.locator("dialog").evaluate(el => el.open), true);
   await page.keyboard.press("ArrowRight");
-  assert.ok((await page.locator("dialog img").getAttribute("src")).endsWith("tabs.png"));
+  assert.ok((await page.locator("dialog img").getAttribute("src")).endsWith("/us/Screenshot5.png"));
   await page.keyboard.press("Escape");
   assert.equal(await page.locator("dialog").evaluate(el => el.open), false);
   assert.equal(await page.locator(".screenshot-button").evaluate(el => el === document.activeElement), true);
@@ -47,7 +61,7 @@ try {
   await page.goto("http://127.0.0.1:3000/", { waitUntil: "networkidle" });
   assert.equal(await page.locator("html").getAttribute("lang"), "uk");
   await page.locator("select").selectOption("en");
-  await page.locator(".gallery-tabs").getByRole("button", { name: "Overview", exact: false }).click();
+  await page.locator(".gallery-thumbnails").getByRole("button", { name: "Overview", exact: true }).click();
   await page.evaluate(() => scrollTo(0, 0));
   mkdirSync("artifacts", { recursive: true });
   await page.screenshot({ path: "artifacts/desktop.png", fullPage: true });
