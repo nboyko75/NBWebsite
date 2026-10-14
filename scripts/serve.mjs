@@ -2,6 +2,7 @@
 import http from "node:http";
 import { createReadStream, existsSync, statSync } from "node:fs";
 import path from "node:path";
+import { basePath } from "../lib/site-path.ts";
 
 const root = path.resolve("out");
 if (!existsSync(path.join(root, "index.html"))) throw Error("Run npm run build before npm start.");
@@ -10,7 +11,12 @@ const server = http.createServer((req, res) => {
   try {
     if (!["GET", "HEAD"].includes(req.method)) { res.writeHead(405).end(); return; }
     const url = new URL(req.url, "http://localhost");
-    let file = path.resolve(root, `.${decodeURIComponent(url.pathname)}`);
+    const pathname = decodeURIComponent(url.pathname);
+    if (basePath && (pathname === "/" || pathname === basePath)) {
+      res.writeHead(302, { Location: `${basePath}/${url.search}` }).end(); return;
+    }
+    if (basePath && !pathname.startsWith(`${basePath}/`)) { res.writeHead(404).end("Not found"); return; }
+    let file = path.resolve(root, `.${pathname.slice(basePath.length)}`);
     if (file !== root && !file.startsWith(root + path.sep)) { res.writeHead(403).end(); return; }
     if (existsSync(file) && statSync(file).isDirectory()) file = path.join(file, "index.html");
     if (!existsSync(file)) { res.writeHead(404).end("Not found"); return; }
@@ -36,4 +42,4 @@ const server = http.createServer((req, res) => {
     stream.pipe(res);
   } catch { res.writeHead(400).end("Bad request"); }
 });
-server.listen(Number(process.env.PORT || 3000), "127.0.0.1", () => console.log(`Portfolio preview: http://127.0.0.1:${server.address().port}`));
+server.listen(Number(process.env.PORT || 3000), "127.0.0.1", () => console.log(`Portfolio preview: http://127.0.0.1:${server.address().port}${basePath}/`));

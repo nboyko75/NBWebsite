@@ -46,8 +46,8 @@
       "caption": "Essential operations with pdf"
     }
   ],
-  "github": "https://github.com/nboyko75/Excel-utils",
-  "localesSource": "D:/Projects/DocExplorer/docs/README.md",
+  "github": "https://github.com/nboyko75/NBWebsite",
+  "localesSource": "D:/Projects/NBWebSite/README.md",
   "storeLocaleNote": "Store metadata lists English; the application source documents eleven interface locales.",
   "localizedScreenshots": {
     "source": "artifacts/Screenshots",

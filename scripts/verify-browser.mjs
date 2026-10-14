@@ -1,6 +1,8 @@
 import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
 import { mkdirSync, existsSync } from "node:fs";
+import { assetUrl, basePath } from "../lib/site-path.ts";
+const testUrl = process.env.TEST_URL || `http://127.0.0.1:3000${basePath}/`;
 const options = { headless: true };
 if (process.env.BROWSER_PATH) options.executablePath = process.env.BROWSER_PATH;
 else if (process.platform === "win32") options.channel = "msedge";
@@ -12,7 +14,10 @@ try {
   page.on("pageerror", error => errors.push(error.message));
   const missing = [];
   page.on("response", response => { if (response.status() >= 400) missing.push(response.url()); });
-  await page.goto(process.env.TEST_URL || "http://127.0.0.1:3000", { waitUntil: "networkidle" });
+  await page.goto(testUrl, { waitUntil: "networkidle" });
+  await page.evaluate(() => document.fonts.ready);
+  assert.equal(await page.evaluate(() => [...document.fonts].filter(font => font.family === "DM Sans" && font.status === "loaded").length), 4, "All local font weights loaded");
+  assert.equal(await page.locator('link[rel="icon"]').getAttribute("href"), assetUrl("/icon.svg"));
   assert.equal(await page.locator("h1").innerText(), "Small tools.\nBetter workflows.");
   assert.equal(await page.locator("select option").count(), 11);
   const screenshotSets = { en: ["us", 9], uk: ["Ua", 9], de: ["de", 9], fr: ["fr", 9], es: ["es", 8], it: ["it", 9], "pt-BR": ["pt", 9], ja: ["jp", 8], ko: ["us", 9], "zh-CN": ["cn", 8], ru: ["Ru", 9] };
@@ -28,7 +33,7 @@ try {
     for (let index = 0; index < count; index++) {
       await page.locator(".gallery-thumbnails button").nth(index).click();
       const screenshot = page.locator(".screenshot-button img");
-      assert.equal(await screenshot.getAttribute("src"), `/media/doxexplorer/screenshots/${folder}/Screenshot${index + 1}.png`);
+      assert.equal(await screenshot.getAttribute("src"), assetUrl(`/media/doxexplorer/screenshots/${folder}/Screenshot${index + 1}.png`));
       await screenshot.evaluate(image => image.decode());
       assert.equal(await page.locator(".gallery-counter").innerText(), `${String(index + 1).padStart(2, "0")} / ${String(count).padStart(2, "0")}`);
     }
@@ -58,7 +63,7 @@ try {
   await page.locator("select").selectOption("uk");
   await page.reload({ waitUntil: "networkidle" });
   assert.equal(await page.locator("html").getAttribute("lang"), "uk");
-  await page.goto("http://127.0.0.1:3000/", { waitUntil: "networkidle" });
+  await page.goto(testUrl, { waitUntil: "networkidle" });
   assert.equal(await page.locator("html").getAttribute("lang"), "uk");
   await page.locator("select").selectOption("en");
   await page.locator(".gallery-thumbnails").getByRole("button", { name: "Overview", exact: true }).click();

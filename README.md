@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-Open http://127.0.0.1:3000. On Windows PowerShell with script restrictions, use `npm.cmd` in place of `npm`.
+Open http://127.0.0.1:3000/NBWebsite/. On Windows PowerShell with script restrictions, use `npm.cmd` in place of `npm`.
 
 ```sh
 npm run test
@@ -19,7 +19,7 @@ npm run check
 npm run build
 ```
 
-Deploy the generated `out/` directory to any static web host. Run `npm start` for a local production preview, with support for video seeking.
+Deploy the generated `out/` directory under `/NBWebsite/` (the GitHub Pages project path). This prefix is defined in `lib/site-path.ts` and shared by Next.js, public asset URLs, and the preview server. Set it to `""` and rebuild to host at the domain root. Run `npm start` for a local production preview at the same path, with support for video seeking; the preview root redirects there.
 
 For browser checks, run `npm start` in one terminal and `npm run test:e2e` in another. The checks use installed Microsoft Edge on Windows; elsewhere install Playwright Chromium with `npx playwright install chromium`. You can also set `BROWSER_PATH` to an installed browser executable. Screenshots are saved in `artifacts/`.
 
@@ -29,7 +29,7 @@ Complete page translations: English, Ukrainian, German, French, Spanish, Italian
 
 Language priority: `?lang=uk` URL parameter → saved selection → browser language → English. Selection updates the page, screenshots, HTML language, title, description, URL, and local storage without navigation. Product names and original media contents stay unchanged. Website translations are authored for this portfolio and should receive native-speaker review before publication.
 
-The eleven locales were verified against `D:/Projects/DocExplorer/docs/README.md` and application localization files. Microsoft Store currently reports only English in its listing metadata, so the application language list is used as requested.
+The eleven locales were verified against `D:/Projects/NBWebSite/docs/README.md` and application localization files. Microsoft Store currently reports only English in its listing metadata, so the application language list is used as requested.
 
 ## Content and media
 
@@ -37,7 +37,7 @@ The eleven locales were verified against `D:/Projects/DocExplorer/docs/README.md
 - Description, features, logo, and public support email: https://apps.microsoft.com/detail/9ns0crbdgtv6
 - Microsoft Store asset URLs and content provenance: `content/sources.json`.
 - Excel content: https://github.com/nboyko75/Excel-utils — Excel macro workbooks for printing mirrored page margins, in English and Ukrainian.
-- Original trailer copied from `D:/Projects/Doc/DocExplorer/Video/Trailer4_2.mp4` to `public/media/doxexplorer/trailer.mp4` (about 101 MB / 7 min 28 sec). It loads only when its dialog opens. The poster is extracted from the supplied video.
+- Original trailer copied from `D:/Projects/NBWebSite/Trailer4_2.mp4` to `public/media/doxexplorer/trailer.mp4` (about 101 MB / 7 min 28 sec). It loads only when its dialog opens. The poster is extracted from the supplied video.
 - DM Sans font files are locally hosted; license is in `public/fonts/OFL.txt`.
 
 ### Localized DoxExplorer screenshots
