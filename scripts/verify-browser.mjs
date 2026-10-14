@@ -13,6 +13,8 @@ try {
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
   const missing = [];
+  const videoRequests = [];
+  page.on("request", request => { if (request.url().endsWith(".mp4")) videoRequests.push(request.url()); });
   page.on("response", response => { if (response.status() >= 400) missing.push(response.url()); });
   await page.goto(testUrl, { waitUntil: "networkidle" });
   await page.evaluate(() => document.fonts.ready);
@@ -51,12 +53,25 @@ try {
   await page.keyboard.press("Escape");
   assert.equal(await page.locator("dialog").evaluate(el => el.open), false);
   assert.equal(await page.locator(".screenshot-button").evaluate(el => el === document.activeElement), true);
+  assert.deepEqual(videoRequests, [], "Trailer is not downloaded before play");
   await page.getByRole("button", { name: "Watch trailer", exact: true }).click();
-  await page.waitForFunction(() => document.querySelector("video")?.readyState >= 1);
-  const duration = await page.locator("video").evaluate(el => el.duration);
+  await page.waitForFunction(() => document.querySelector(".trailer-screen video")?.readyState >= 2);
+  const miniVideo = page.locator(".trailer-screen video");
+  const duration = await miniVideo.evaluate(el => el.duration);
   assert.ok(duration > 448 && duration < 449);
+  await miniVideo.evaluate(el => { el.currentTime = 30; el.volume = 0.4; });
+  await page.waitForFunction(() => !document.querySelector(".trailer-screen video").seeking);
+  await page.getByRole("button", { name: "Enlarge video", exact: true }).click();
+  await page.waitForFunction(() => document.querySelector("dialog video")?.currentTime >= 30);
+  assert.equal(await miniVideo.evaluate(el => el.paused), true, "Mini player pauses while enlarged");
+  assert.equal(await page.locator("dialog video").evaluate(el => el.volume), 0.4);
+  await page.locator("dialog video").evaluate(el => { el.pause(); el.currentTime = 60; });
+  await page.waitForFunction(() => !document.querySelector("dialog video").seeking);
   await page.getByRole("button", { name: "Close", exact: true }).click();
-  assert.equal(await page.locator("video").count(), 0);
+  assert.equal(await page.locator("dialog video").count(), 0);
+  assert.equal(await miniVideo.evaluate(el => el.currentTime), 60, "Playback position returns to mini player");
+  assert.equal(await miniVideo.evaluate(el => el.paused), true);
+  assert.equal(await page.getByRole("button", { name: "Enlarge video", exact: true }).evaluate(el => el === document.activeElement), true);
   assert.equal(await page.locator(".excel-presentation").count(), existsSync("public/media/excel-utils/presentation.png") ? 1 : 0);
   const dest = await page.locator('a[href="https://apps.microsoft.com/detail/9ns0crbdgtv6"]').count();
   assert.equal(dest, 1);
@@ -81,5 +96,5 @@ try {
   }
   assert.deepEqual(errors, [], "Browser runtime errors");
   assert.deepEqual(missing, [], "Missing assets");
-  console.log("PASS: all 11 locales, language persistence, desktop/mobile layouts, gallery, dialog keyboard/focus, video metadata, and media availability. No runtime errors or missing assets.");
+  console.log("PASS: all 11 locales, language persistence, desktop/mobile layouts, gallery, dialog keyboard/focus, deferred mini player, enlarged video position/volume, and media availability. No runtime errors or missing assets.");
 } finally { await browser.close(); }

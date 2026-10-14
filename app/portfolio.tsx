@@ -31,6 +31,10 @@ export default function Portfolio({ excelMedia }: { excelMedia: { image: boolean
   const [activeImage, setActiveImage] = useState(0);
   const [modal, setModal] = useState<Modal>(null);
   const dialog = useRef<HTMLDialogElement>(null);
+  const miniVideo = useRef<HTMLVideoElement>(null);
+  const modalVideo = useRef<HTMLVideoElement>(null);
+  const trailerTime = useRef(0);
+  const [trailerStarted, setTrailerStarted] = useState(false);
   const trigger = useRef<HTMLElement | null>(null);
   const copy = dictionaries[locale];
   const screenshots = getScreenshots(locale);
@@ -70,9 +74,22 @@ export default function Portfolio({ excelMedia }: { excelMedia: { image: boolean
   }
   function openModal(value: Modal) {
     trigger.current = document.activeElement as HTMLElement;
+    if (miniVideo.current) {
+      if (miniVideo.current.readyState >= 1) trailerTime.current = miniVideo.current.currentTime;
+      miniVideo.current.pause();
+    }
     setModal(value);
   }
   function closeModal() {
+    if (modal === "dox-video" && modalVideo.current) {
+      trailerTime.current = modalVideo.current.currentTime;
+      modalVideo.current.pause();
+      if (miniVideo.current) {
+        if (miniVideo.current.readyState >= 1) miniVideo.current.currentTime = trailerTime.current;
+        miniVideo.current.volume = modalVideo.current.volume;
+        miniVideo.current.muted = modalVideo.current.muted;
+      }
+    }
     dialog.current?.close();
     setModal(null);
     trigger.current?.focus();
@@ -97,15 +114,28 @@ export default function Portfolio({ excelMedia }: { excelMedia: { image: boolean
         <div className="section-heading"><div><div className="eyebrow">01 / {copy.work}</div><h2 id="work-title">{copy.selected}</h2></div><p>{copy.selectedDesc}</p></div>
         <article className="dox-project" aria-labelledby="dox-title">
           <div className="project-topline"><span className="eyebrow"><span className="status-dot" />{copy.desktop}</span><span className="project-number">01 — 02</span></div>
-          <div className="dox-intro"><div><div className="app-name"><img src={assetUrl(media.doxIcon)} alt="" width="40" height="40" /><h3 id="dox-title">Pdf&DocExplorer</h3></div><h4 className="project-tagline">{copy.docTagline}</h4></div><div className="project-description"><p>{copy.docDescription}</p><div className="project-actions"><a href={STORE} className="button primary" target="_blank" rel="noreferrer"><Icon name="windows" />{copy.store}<Icon name="up" /></a><button className="button text-button" onClick={() => openModal("dox-video")}><Icon name="play" />{copy.watch}</button></div></div></div>
+          <div className="dox-intro"><div><div className="app-name"><img src={assetUrl(media.doxIcon)} alt="" width="40" height="40" /><h3 id="dox-title">Pdf&DocExplorer</h3></div><h4 className="project-tagline">{copy.docTagline}</h4></div><div className="project-description"><p>{copy.docDescription}</p><div className="project-actions"><a href={STORE} className="button primary" target="_blank" rel="noreferrer"><Icon name="windows" />{copy.store}<Icon name="up" /></a></div></div></div>
+          <div className="dox-media">
           <div className="gallery" aria-label={copy.gallery}>
             <div className="gallery-toolbar"><span><span className="window-dots" aria-hidden="true">● ● ●</span> Pdf&DocExplorer</span><span className="gallery-counter">{String(galleryIndex + 1).padStart(2, "0")} / {String(screenshots.length).padStart(2, "0")}</span></div>
             <button className="screenshot-button" aria-label={`${copy.enlarge}: ${currentScreenshot.caption}`} onClick={() => openModal("image")}><img src={assetUrl(currentScreenshot.src)} width={currentScreenshot.width} height={currentScreenshot.height} alt={`Pdf&DocExplorer — ${currentScreenshot.caption}`} fetchPriority="high" /><span className="expand-icon"><Icon name="expand" /></span></button>
             <div className="gallery-navigation"><span className="gallery-caption" aria-live="polite">{currentScreenshot.caption}</span><div className="gallery-arrows"><button aria-label={copy.previous} onClick={() => moveImage(-1)}>←</button><button aria-label={copy.next} onClick={() => moveImage(1)}>→</button></div></div>
             <div className="gallery-thumbnails">{screenshots.map((screenshot, index) => <button key={screenshot.src} aria-label={screenshot.caption} title={screenshot.caption} aria-pressed={galleryIndex === index} onClick={() => setActiveImage(index)}><img src={assetUrl(screenshot.src)} width={screenshot.width} height={screenshot.height} alt="" loading="lazy" /><span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span></button>)}</div>
           </div>
+          <div className="dox-media-sidebar">
+            <section className="trailer-card" aria-label={`Pdf&DocExplorer — ${copy.watch}`}>
+              <div className="trailer-screen">
+                <video ref={miniVideo} controls={trailerStarted} playsInline preload="none" aria-label={`Pdf&DocExplorer — ${copy.watch}`} poster={assetUrl(media.doxPoster)} src={assetUrl(media.doxTrailer)} onPlay={() => setTrailerStarted(true)} onLoadedMetadata={event => { event.currentTarget.currentTime = trailerTime.current; }}>
+                  <a href={assetUrl(media.doxTrailer)}>{copy.trailerUnavailable}</a>
+                </video>
+                {!trailerStarted && <button className="trailer-play" onClick={() => { setTrailerStarted(true); void miniVideo.current?.play().catch(() => {}); }}><span className="trailer-play-icon"><Icon name="play" /></span><span>{copy.watch}</span></button>}
+              </div>
+              <div className="trailer-footer"><p>{copy.screenshotNote}</p><button className="button trailer-expand" onClick={() => openModal("dox-video")}><Icon name="expand" />{copy.enlargeVideo}</button></div>
+            </section>
           <ul className="feature-list">{[copy.feature1, copy.feature2, copy.feature3].map(feature => <li key={feature}><span className="check-circle"><Icon name="check" /></span>{feature}</li>)}</ul>
-          <div className="project-notes"><p>{copy.requirements}</p><p>{copy.screenshotNote}</p></div>
+          </div>
+          </div>
+          <div className="project-notes"><p>{copy.requirements}</p></div>
         </article>
 
         <article className="excel-project" aria-labelledby="excel-title"><div className="excel-content"><div className="eyebrow">{copy.excelCategory}</div><div className="app-name"><span className="excel-icon" aria-hidden="true">X</span><h3 id="excel-title">Excel-utils</h3></div><h4 className="project-tagline">{copy.excelTagline}</h4><p>{copy.excelDescription}</p><div className="excel-actions"><a href={REPO} target="_blank" rel="noreferrer" className="button light"><Icon name="github" />{copy.repo}<Icon name="up" /></a>{excelMedia.trailer && <button className="button text-button" onClick={() => openModal("excel-video")}><Icon name="play" />{copy.watch}</button>}</div></div>
@@ -121,7 +151,13 @@ export default function Portfolio({ excelMedia }: { excelMedia: { image: boolean
     </main>
     <footer className="container"><a className="brand footer-brand" href="#top"><span className="monogram">nb<span>.</span></span><span>© {new Date().getFullYear()} Nick Boiko</span></a><span>{copy.footer}</span><a href="#top" className="text-link">{copy.backTop}<span aria-hidden="true">↑</span></a></footer>
     <dialog ref={dialog} className="media-dialog" aria-label={modal === "image" ? currentScreenshot.caption : copy.watch} onCancel={event => { event.preventDefault(); closeModal(); }} onClick={event => { if (event.target === event.currentTarget) closeModal(); }} onKeyDown={event => { if (modal === "image" && event.key === "ArrowLeft") moveImage(-1); if (modal === "image" && event.key === "ArrowRight") moveImage(1); }}>
-      {modal && <div className="dialog-content"><div className="dialog-toolbar"><span>{modal === "image" ? currentScreenshot.caption : `${modal === "dox-video" ? "Pdf&DocExplorer" : "Excel-utils"} — ${copy.watch}`}</span><button onClick={closeModal} aria-label={copy.close} autoFocus><Icon name="close" /></button></div>{modal === "image" ? <><img src={assetUrl(currentScreenshot.src)} alt={`Pdf&DocExplorer — ${currentScreenshot.caption}`} /><div className="dialog-gallery-controls"><button onClick={() => moveImage(-1)} aria-label={copy.previous}>←</button><span>{galleryIndex + 1} / {screenshots.length}</span><button onClick={() => moveImage(1)} aria-label={copy.next}>→</button></div></> : <video controls autoPlay playsInline preload="none" poster={modal === "dox-video" ? assetUrl(media.doxPoster) : excelMedia.poster ? assetUrl(media.excelPoster) : undefined} src={modal === "dox-video" ? assetUrl(media.doxTrailer) : assetUrl(media.excelTrailer)}><a href={modal === "dox-video" ? assetUrl(media.doxTrailer) : assetUrl(media.excelTrailer)}>{copy.trailerUnavailable}</a></video>}</div>}
+      {modal && <div className="dialog-content"><div className="dialog-toolbar"><span>{modal === "image" ? currentScreenshot.caption : `${modal === "dox-video" ? "Pdf&DocExplorer" : "Excel-utils"} — ${copy.watch}`}</span><button onClick={closeModal} aria-label={copy.close} autoFocus><Icon name="close" /></button></div>{modal === "image" ? <><img src={assetUrl(currentScreenshot.src)} alt={`Pdf&DocExplorer — ${currentScreenshot.caption}`} /><div className="dialog-gallery-controls"><button onClick={() => moveImage(-1)} aria-label={copy.previous}>←</button><span>{galleryIndex + 1} / {screenshots.length}</span><button onClick={() => moveImage(1)} aria-label={copy.next}>→</button></div></> : <video ref={modalVideo} controls autoPlay playsInline preload="none" onLoadedMetadata={event => {
+        if (modal === "dox-video") {
+          event.currentTarget.currentTime = trailerTime.current;
+          event.currentTarget.volume = miniVideo.current?.volume ?? 1;
+          event.currentTarget.muted = miniVideo.current?.muted ?? false;
+        }
+      }} poster={modal === "dox-video" ? assetUrl(media.doxPoster) : excelMedia.poster ? assetUrl(media.excelPoster) : undefined} src={modal === "dox-video" ? assetUrl(media.doxTrailer) : assetUrl(media.excelTrailer)}><a href={modal === "dox-video" ? assetUrl(media.doxTrailer) : assetUrl(media.excelTrailer)}>{copy.trailerUnavailable}</a></video>}</div>}
     </dialog>
   </>;
 }

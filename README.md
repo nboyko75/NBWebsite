@@ -37,7 +37,7 @@ The eleven locales were verified against `D:/Projects/NBWebSite/docs/README.md` 
 - Description, features, logo, and public support email: https://apps.microsoft.com/detail/9ns0crbdgtv6
 - Microsoft Store asset URLs and content provenance: `content/sources.json`.
 - Excel content: https://github.com/nboyko75/Excel-utils — Excel macro workbooks for printing mirrored page margins, in English and Ukrainian.
-- Original trailer copied from `D:/Projects/NBWebSite/Trailer4_2.mp4` to `public/media/doxexplorer/trailer.mp4` (about 101 MB / 7 min 28 sec). It loads only when its dialog opens. The poster is extracted from the supplied video.
+- Original trailer copied from `D:/Projects/NBWebSite/Trailer4_2.mp4` to `public/media/doxexplorer/trailer.mp4` (about 101 MB / 7 min 28 sec). The compact player loads the video only on play; its enlarge button opens a larger dialog at the same playback position. Closing the dialog keeps the position and leaves playback paused. The poster is extracted from the supplied video.
 - DM Sans font files are locally hosted; license is in `public/fonts/OFL.txt`.
 
 ### Localized DoxExplorer screenshots

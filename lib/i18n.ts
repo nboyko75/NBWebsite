@@ -25,6 +25,7 @@ const en = {
   contactTitle: "Let’s make work simpler.", contactDescription: "Have a question, feedback, or an idea? I’d love to hear it.",
   email: "Say hello", footer: "Thoughtful tools for everyday work.", backTop: "Back to top", close: "Close",
   previous: "Previous screenshot", next: "Next screenshot", enlarge: "Enlarge screenshot", trailerUnavailable: "Your browser cannot play this video. Download the trailer.", skip: "Skip to content",
+  enlargeVideo: "Enlarge video",
 };
 export type Copy = typeof en;
 const keys = Object.keys(en) as (keyof Copy)[];
@@ -46,6 +47,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "Незабаром — докладний огляд.", "Знімки екрана та відеодемонстрація вже на підході.", "Програми для\nпрактичних завдань.",
     "Я Микола Бойко, розробник. Мої проєкти допомагають із повсякденними завданнями: пошуком документів, роботою з PDF і підготовкою таблиць до друку.",
     "Зробімо роботу простішою.", "Маєте запитання, відгук чи ідею? Буду радий почути.", "Написати", "Продумані інструменти для щоденної роботи.", "Нагору", "Закрити", "Попередній знімок", "Наступний знімок", "Збільшити знімок", "Браузер не може відтворити відео. Завантажте його.", "Перейти до вмісту",
+    "Збільшити відео",
   ]),
   de: translated([
     "Projekte", "Über mich", "Kontakt", "Sprache", "UNABHÄNGIGER SOFTWAREENTWICKLER", "Kleine Helfer.", "Bessere Abläufe.",
@@ -59,6 +61,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "Bald gibt es mehr zu sehen.", "Screenshots und eine Videovorführung folgen in Kürze.", "Software mit\npraktischem Nutzen.",
     "Ich bin Nick Boiko, Entwickler. Meine Projekte unterstützen vertraute Aufgaben: Dokumente finden, PDFs bearbeiten und Tabellen für den Druck vorbereiten.",
     "Machen wir die Arbeit einfacher.", "Fragen, Feedback oder eine Idee? Ich freue mich auf Ihre Nachricht.", "Hallo sagen", "Durchdachte Werkzeuge für den Arbeitsalltag.", "Nach oben", "Schließen", "Vorheriger Screenshot", "Nächster Screenshot", "Screenshot vergrößern", "Ihr Browser kann dieses Video nicht abspielen. Laden Sie den Trailer herunter.", "Zum Inhalt springen",
+    "Video vergrößern",
   ]),
   fr: translated([
     "Projets", "À propos", "Me contacter", "Langue", "DÉVELOPPEUR LOGICIEL INDÉPENDANT", "De petits outils.", "Un travail plus simple.",
@@ -72,6 +75,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "Une présentation arrive bientôt.", "Des captures d’écran et une démonstration vidéo seront bientôt disponibles.", "Des logiciels\nà l’utilité concrète.",
     "Je suis Nick Boiko, le développeur. Mes projets facilitent des tâches familières : trouver des documents, travailler sur des PDF et préparer des tableaux à imprimer.",
     "Simplifions le travail ensemble.", "Une question, un avis ou une idée ? Je serai ravi de vous lire.", "Écrivez-moi", "Des outils réfléchis pour le quotidien.", "Retour en haut", "Fermer", "Capture précédente", "Capture suivante", "Agrandir la capture", "Votre navigateur ne peut pas lire cette vidéo. Téléchargez-la.", "Aller au contenu",
+    "Agrandir la vidéo",
   ]),
   es: translated([
     "Proyectos", "Sobre mí", "Contacto", "Idioma", "DESARROLLADOR DE SOFTWARE INDEPENDIENTE", "Pequeñas herramientas.", "Un trabajo más fácil.",
@@ -85,6 +89,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "Pronto podrás verlo de cerca.", "Las capturas de pantalla y una demostración en vídeo estarán disponibles próximamente.", "Software con\nun propósito práctico.",
     "Soy Nick Boiko, desarrollador. Mis proyectos se centran en tareas habituales: encontrar documentos, trabajar con PDF y preparar hojas de cálculo para imprimir.",
     "Hagamos el trabajo más sencillo.", "¿Tienes una pregunta, un comentario o una idea? Me encantará leerte.", "Escríbeme", "Herramientas pensadas para el trabajo diario.", "Volver arriba", "Cerrar", "Captura anterior", "Captura siguiente", "Ampliar captura", "Tu navegador no puede reproducir este vídeo. Descárgalo.", "Ir al contenido",
+    "Ampliar vídeo",
   ]),
   it: translated([
     "Progetti", "Chi sono", "Contattami", "Lingua", "SVILUPPATORE SOFTWARE INDIPENDENTE", "Piccoli strumenti.", "Un lavoro più semplice.",
@@ -98,6 +103,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "Presto potrai vederlo da vicino.", "Immagini e una dimostrazione video saranno disponibili a breve.", "Software con\nuno scopo concreto.",
     "Sono Nick Boiko, lo sviluppatore. I miei progetti semplificano attività comuni: trovare documenti, lavorare con i PDF e preparare fogli di calcolo per la stampa.",
     "Semplifichiamo il lavoro insieme.", "Hai una domanda, un suggerimento o un’idea? Scrivimi, ti leggerò volentieri.", "Scrivimi", "Strumenti pensati per il lavoro quotidiano.", "Torna in alto", "Chiudi", "Immagine precedente", "Immagine successiva", "Ingrandisci immagine", "Il browser non può riprodurre questo video. Scaricalo.", "Vai al contenuto",
+    "Ingrandisci video",
   ]),
   "pt-BR": translated([
     "Projetos", "Sobre mim", "Entre em contato", "Idioma", "DESENVOLVEDOR DE SOFTWARE INDEPENDENTE", "Pequenas ferramentas.", "Um trabalho mais fácil.",
@@ -111,6 +117,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "Em breve, uma visão mais detalhada.", "Capturas de tela e uma demonstração em vídeo estarão disponíveis em breve.", "Software com\num propósito prático.",
     "Sou Nick Boiko, desenvolvedor. Meus projetos ajudam em tarefas comuns: encontrar documentos, trabalhar com PDFs e preparar planilhas para impressão.",
     "Vamos simplificar o trabalho.", "Tem uma pergunta, um comentário ou uma ideia? Vou adorar receber sua mensagem.", "Diga olá", "Ferramentas pensadas para o trabalho diário.", "Voltar ao topo", "Fechar", "Captura anterior", "Próxima captura", "Ampliar captura", "Seu navegador não pode reproduzir este vídeo. Baixe o arquivo.", "Ir para o conteúdo",
+    "Ampliar vídeo",
   ]),
   ja: translated([
     "制作したソフト", "自己紹介", "お問い合わせ", "言語", "個人ソフトウェア開発者", "小さなツールで。", "毎日の仕事を快適に。",
@@ -124,6 +131,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "詳しい紹介を準備中です。", "スクリーンショットと操作紹介動画を近日公開予定です。", "実用性を大切にした\nソフトウェア。",
     "Pdf&DocExplorerとExcel-utilsの開発者、Nick Boikoです。文書の検索、PDFの編集、表計算シートの印刷準備など、身近な作業を支えるソフトを作っています。",
     "仕事をもっとシンプルに。", "ご質問、ご感想、アイデアがあれば、ぜひお聞かせください。", "メールを送る", "毎日の仕事に、使いやすいツールを。", "ページの先頭へ", "閉じる", "前の画像", "次の画像", "画像を拡大", "このブラウザでは動画を再生できません。動画をダウンロードしてください。", "本文へ移動",
+    "動画を拡大",
   ]),
   ko: translated([
     "프로젝트", "소개", "문의하기", "언어", "독립 소프트웨어 개발자", "작은 도구로.", "더 편리한 작업을.",
@@ -137,6 +145,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "자세한 소개를 준비 중입니다.", "스크린샷과 사용 방법 영상이 곧 공개됩니다.", "실용적인 목적을 담은\n소프트웨어.",
     "저는 Pdf&DocExplorer와 Excel-utils를 개발한 Nick Boiko입니다. 문서 검색, PDF 작업, 스프레드시트 인쇄 준비처럼 익숙한 작업을 돕는 프로젝트를 만듭니다.",
     "함께 더 간편하게 일해요.", "질문, 의견 또는 아이디어가 있으신가요? 편하게 연락해 주세요.", "메일 보내기", "일상 업무를 위해 세심하게 만든 도구.", "맨 위로", "닫기", "이전 스크린샷", "다음 스크린샷", "스크린샷 확대", "브라우저에서 이 영상을 재생할 수 없습니다. 영상을 다운로드하세요.", "본문으로 이동",
+    "영상 확대",
   ]),
   "zh-CN": translated([
     "精选项目", "关于我", "联系我", "语言", "独立软件开发者", "小工具。", "让工作更顺手。",
@@ -150,6 +159,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "详细展示即将上线。", "截图和操作演示视频即将发布。", "以实用为目的的\n软件。",
     "我是 Nick Boiko，Pdf&DocExplorer 和 Excel-utils 的开发者。我的项目专注于常见任务：查找文档、处理 PDF，以及为电子表格做好打印准备。",
     "一起让工作更简单。", "有问题、反馈或想法？欢迎与我分享。", "发送邮件", "为日常工作用心打造的工具。", "返回顶部", "关闭", "上一张截图", "下一张截图", "放大截图", "你的浏览器无法播放此视频。请下载视频。", "跳至正文",
+    "放大视频",
   ]),
   ru: translated([
     "Мои проекты", "Обо мне", "Связаться", "Язык", "НЕЗАВИСИМЫЙ РАЗРАБОТЧИК ПРОГРАММ", "Небольшие инструменты.", "Удобная работа.",
@@ -163,6 +173,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "Подробный обзор скоро появится.", "Снимки экрана и видеодемонстрация уже готовятся.", "Программы для\nпрактических задач.",
     "Я Николай Бойко, разработчик. Мои проекты помогают решать привычные задачи: искать документы, работать с PDF и готовить таблицы к печати.",
     "Сделаем работу проще.", "Есть вопрос, отзыв или идея? Буду рад вашему сообщению.", "Написать", "Продуманные инструменты для ежедневной работы.", "Наверх", "Закрыть", "Предыдущий снимок", "Следующий снимок", "Увеличить снимок", "Браузер не может воспроизвести видео. Скачайте его.", "Перейти к содержимому",
+    "Увеличить видео",
   ]),
 };
 export function resolveLocale(value: string | null | undefined): Locale | null {
