@@ -21,7 +21,7 @@ const en = {
   excelDescription: "Useful Excel workbooks with macros for everyday tasks. Print mirrored page margins with the included workbook, available in English and Ukrainian.",
   repo: "Explore the repository", mediaSoon: "A closer look is on its way.", mediaSoonDesc: "Screenshots and a video walkthrough are coming soon.",
   aboutTitle: "Software with\na practical purpose.",
-  aboutDescription: "I’m Nick Boiko, the developer behind Pdf&DocExplorer and Excel-utils. My projects focus on familiar tasks: finding documents, working with PDFs, and getting spreadsheets ready to print.",
+  aboutDescription: "I’m Nick Boiko, the developer. My projects focus on familiar tasks: finding documents, working with PDFs, and getting spreadsheets ready to print.",
   contactTitle: "Let’s make work simpler.", contactDescription: "Have a question, feedback, or an idea? I’d love to hear it.",
   email: "Say hello", footer: "Thoughtful tools for everyday work.", backTop: "Back to top", close: "Close",
   previous: "Previous screenshot", next: "Next screenshot", enlarge: "Enlarge screenshot", trailerUnavailable: "Your browser cannot play this video. Download the trailer.", skip: "Skip to content",
@@ -36,7 +36,7 @@ export const dictionaries: Record<Locale, Copy> = {
   en,
   uk: translated([
     "Мої проєкти", "Про мене", "Зв’язатися", "Мова", "НЕЗАЛЕЖНИЙ РОЗРОБНИК ПРОГРАМ", "Невеликі інструменти.", "Зручніша робота.",
-    "Я Нік Бойко. Створюю практичні програми, які полегшують щоденну роботу з документами.", "Переглянути проєкти", "Мій GitHub", "Створено для справи.",
+    "Я Микола Бойко. Створюю практичні програми, які полегшують щоденну роботу з документами.", "Переглянути проєкти", "Мій GitHub", "Створено для справи.",
     "Два проєкти. Одна ідея: менше зайвих дій у щоденній роботі.", "ПРОГРАМА ДЛЯ WINDOWS", "Ваші документи.\nОдин робочий простір.",
     "Переглядайте й знаходьте файли. Редагуйте PDF, закріплюйте документи у вкладках і виконуйте щоденні завдання в одній програмі.", "Завантажити з Microsoft Store", "Дивитися відео",
     "Пошук за назвами файлів і вмістом документів", "Перегляд PDF, Office, зображень і тексту", "Упорядкування, поворот, імпорт та оптимізація сторінок PDF",
@@ -44,7 +44,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "Огляд", "Пошук файлів", "Закріплені вкладки", "Інструменти PDF", "EXCEL · УТИЛІТИ VBA", "Невеликий макрос.\nКращий друк.",
     "Корисні книги Excel з макросами для щоденних завдань. Друкуйте із дзеркальними полями за допомогою готової книги англійською та українською.", "Переглянути репозиторій",
     "Незабаром — докладний огляд.", "Знімки екрана та відеодемонстрація вже на підході.", "Програми для\nпрактичних завдань.",
-    "Я Нік Бойко, розробник Pdf&DocExplorer та Excel-utils. Мої проєкти допомагають із повсякденними завданнями: пошуком документів, роботою з PDF і підготовкою таблиць до друку.",
+    "Я Микола Бойко, розробник. Мої проєкти допомагають із повсякденними завданнями: пошуком документів, роботою з PDF і підготовкою таблиць до друку.",
     "Зробімо роботу простішою.", "Маєте запитання, відгук чи ідею? Буду радий почути.", "Написати", "Продумані інструменти для щоденної роботи.", "Нагору", "Закрити", "Попередній знімок", "Наступний знімок", "Збільшити знімок", "Браузер не може відтворити відео. Завантажте його.", "Перейти до вмісту",
   ]),
   de: translated([
@@ -57,7 +57,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "Übersicht", "Dateien finden", "Angeheftete Vorschauen", "PDF-Werkzeuge", "EXCEL · VBA-HILFSPROGRAMME", "Ein kleines Makro.\nEin besserer Ausdruck.",
     "Nützliche Excel-Arbeitsmappen mit Makros für den Alltag. Drucken Sie mit gespiegelten Seitenrändern. Die Arbeitsmappe ist auf Englisch und Ukrainisch verfügbar.", "Repository entdecken",
     "Bald gibt es mehr zu sehen.", "Screenshots und eine Videovorführung folgen in Kürze.", "Software mit\npraktischem Nutzen.",
-    "Ich bin Nick Boiko, Entwickler von Pdf&DocExplorer und Excel-utils. Meine Projekte unterstützen vertraute Aufgaben: Dokumente finden, PDFs bearbeiten und Tabellen für den Druck vorbereiten.",
+    "Ich bin Nick Boiko, Entwickler. Meine Projekte unterstützen vertraute Aufgaben: Dokumente finden, PDFs bearbeiten und Tabellen für den Druck vorbereiten.",
     "Machen wir die Arbeit einfacher.", "Fragen, Feedback oder eine Idee? Ich freue mich auf Ihre Nachricht.", "Hallo sagen", "Durchdachte Werkzeuge für den Arbeitsalltag.", "Nach oben", "Schließen", "Vorheriger Screenshot", "Nächster Screenshot", "Screenshot vergrößern", "Ihr Browser kann dieses Video nicht abspielen. Laden Sie den Trailer herunter.", "Zum Inhalt springen",
   ]),
   fr: translated([
@@ -70,7 +70,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "Présentation", "Trouver vos fichiers", "Aperçus épinglés", "Outils PDF", "EXCEL · UTILITAIRES VBA", "Une petite macro.\nUne meilleure impression.",
     "Des classeurs Excel avec macros pour les tâches courantes. Imprimez avec des marges en miroir grâce au classeur disponible en anglais et en ukrainien.", "Explorer le dépôt",
     "Une présentation arrive bientôt.", "Des captures d’écran et une démonstration vidéo seront bientôt disponibles.", "Des logiciels\nà l’utilité concrète.",
-    "Je suis Nick Boiko, le développeur de Pdf&DocExplorer et Excel-utils. Mes projets facilitent des tâches familières : trouver des documents, travailler sur des PDF et préparer des tableaux à imprimer.",
+    "Je suis Nick Boiko, le développeur. Mes projets facilitent des tâches familières : trouver des documents, travailler sur des PDF et préparer des tableaux à imprimer.",
     "Simplifions le travail ensemble.", "Une question, un avis ou une idée ? Je serai ravi de vous lire.", "Écrivez-moi", "Des outils réfléchis pour le quotidien.", "Retour en haut", "Fermer", "Capture précédente", "Capture suivante", "Agrandir la capture", "Votre navigateur ne peut pas lire cette vidéo. Téléchargez-la.", "Aller au contenu",
   ]),
   es: translated([
@@ -83,7 +83,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "Vista general", "Encuentra tus archivos", "Vistas previas fijadas", "Herramientas PDF", "EXCEL · UTILIDADES VBA", "Una pequeña macro.\nUna mejor impresión.",
     "Libros de Excel con macros para tareas cotidianas. Imprime con márgenes simétricos usando el libro disponible en inglés y ucraniano.", "Explorar el repositorio",
     "Pronto podrás verlo de cerca.", "Las capturas de pantalla y una demostración en vídeo estarán disponibles próximamente.", "Software con\nun propósito práctico.",
-    "Soy Nick Boiko, desarrollador de Pdf&DocExplorer y Excel-utils. Mis proyectos se centran en tareas habituales: encontrar documentos, trabajar con PDF y preparar hojas de cálculo para imprimir.",
+    "Soy Nick Boiko, desarrollador. Mis proyectos se centran en tareas habituales: encontrar documentos, trabajar con PDF y preparar hojas de cálculo para imprimir.",
     "Hagamos el trabajo más sencillo.", "¿Tienes una pregunta, un comentario o una idea? Me encantará leerte.", "Escríbeme", "Herramientas pensadas para el trabajo diario.", "Volver arriba", "Cerrar", "Captura anterior", "Captura siguiente", "Ampliar captura", "Tu navegador no puede reproducir este vídeo. Descárgalo.", "Ir al contenido",
   ]),
   it: translated([
@@ -96,7 +96,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "Panoramica", "Trova i tuoi file", "Anteprime fissate", "Strumenti PDF", "EXCEL · UTILITÀ VBA", "Una piccola macro.\nUna stampa migliore.",
     "Cartelle di lavoro Excel con macro per le attività quotidiane. Stampa con margini speculari grazie al file disponibile in inglese e ucraino.", "Esplora il repository",
     "Presto potrai vederlo da vicino.", "Immagini e una dimostrazione video saranno disponibili a breve.", "Software con\nuno scopo concreto.",
-    "Sono Nick Boiko, lo sviluppatore di Pdf&DocExplorer ed Excel-utils. I miei progetti semplificano attività comuni: trovare documenti, lavorare con i PDF e preparare fogli di calcolo per la stampa.",
+    "Sono Nick Boiko, lo sviluppatore. I miei progetti semplificano attività comuni: trovare documenti, lavorare con i PDF e preparare fogli di calcolo per la stampa.",
     "Semplifichiamo il lavoro insieme.", "Hai una domanda, un suggerimento o un’idea? Scrivimi, ti leggerò volentieri.", "Scrivimi", "Strumenti pensati per il lavoro quotidiano.", "Torna in alto", "Chiudi", "Immagine precedente", "Immagine successiva", "Ingrandisci immagine", "Il browser non può riprodurre questo video. Scaricalo.", "Vai al contenuto",
   ]),
   "pt-BR": translated([
@@ -109,7 +109,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "Visão geral", "Encontre seus arquivos", "Visualizações fixadas", "Ferramentas PDF", "EXCEL · UTILITÁRIOS VBA", "Uma pequena macro.\nUma impressão melhor.",
     "Pastas de trabalho do Excel com macros para tarefas do dia a dia. Imprima com margens espelhadas usando o arquivo disponível em inglês e ucraniano.", "Explorar o repositório",
     "Em breve, uma visão mais detalhada.", "Capturas de tela e uma demonstração em vídeo estarão disponíveis em breve.", "Software com\num propósito prático.",
-    "Sou Nick Boiko, desenvolvedor do Pdf&DocExplorer e do Excel-utils. Meus projetos ajudam em tarefas comuns: encontrar documentos, trabalhar com PDFs e preparar planilhas para impressão.",
+    "Sou Nick Boiko, desenvolvedor. Meus projetos ajudam em tarefas comuns: encontrar documentos, trabalhar com PDFs e preparar planilhas para impressão.",
     "Vamos simplificar o trabalho.", "Tem uma pergunta, um comentário ou uma ideia? Vou adorar receber sua mensagem.", "Diga olá", "Ferramentas pensadas para o trabalho diário.", "Voltar ao topo", "Fechar", "Captura anterior", "Próxima captura", "Ampliar captura", "Seu navegador não pode reproduzir este vídeo. Baixe o arquivo.", "Ir para o conteúdo",
   ]),
   ja: translated([
@@ -153,7 +153,7 @@ export const dictionaries: Record<Locale, Copy> = {
   ]),
   ru: translated([
     "Мои проекты", "Обо мне", "Связаться", "Язык", "НЕЗАВИСИМЫЙ РАЗРАБОТЧИК ПРОГРАММ", "Небольшие инструменты.", "Удобная работа.",
-    "Я Ник Бойко. Создаю практичные программы, которые упрощают повседневную работу с документами.", "Посмотреть проекты", "Мой GitHub", "Создано для дела.",
+    "Я Николай Бойко. Создаю практичные программы, которые упрощают повседневную работу с документами.", "Посмотреть проекты", "Мой GitHub", "Создано для дела.",
     "Два проекта. Одна идея: меньше лишних действий в ежедневной работе.", "ПРИЛОЖЕНИЕ ДЛЯ WINDOWS", "Ваши документы.\nОдно рабочее пространство.",
     "Просматривайте и находите файлы. Редактируйте PDF, закрепляйте документы во вкладках и решайте повседневные задачи в одном приложении.", "Открыть Microsoft Store", "Смотреть видео",
     "Поиск по именам файлов и содержимому документов", "Просмотр PDF, Office, изображений и текста", "Перестановка, поворот, импорт и оптимизация страниц PDF",
@@ -161,7 +161,7 @@ export const dictionaries: Record<Locale, Copy> = {
     "Обзор", "Поиск файлов", "Закреплённые вкладки", "Инструменты PDF", "EXCEL · УТИЛИТЫ VBA", "Небольшой макрос.\nУдобная печать.",
     "Полезные книги Excel с макросами для ежедневных задач. Печатайте с зеркальными полями с помощью готовой книги на английском и украинском языках.", "Открыть репозиторий",
     "Подробный обзор скоро появится.", "Снимки экрана и видеодемонстрация уже готовятся.", "Программы для\nпрактических задач.",
-    "Я Ник Бойко, разработчик Pdf&DocExplorer и Excel-utils. Мои проекты помогают решать привычные задачи: искать документы, работать с PDF и готовить таблицы к печати.",
+    "Я Николай Бойко, разработчик. Мои проекты помогают решать привычные задачи: искать документы, работать с PDF и готовить таблицы к печати.",
     "Сделаем работу проще.", "Есть вопрос, отзыв или идея? Буду рад вашему сообщению.", "Написать", "Продуманные инструменты для ежедневной работы.", "Наверх", "Закрыть", "Предыдущий снимок", "Следующий снимок", "Увеличить снимок", "Браузер не может воспроизвести видео. Скачайте его.", "Перейти к содержимому",
   ]),
 };
