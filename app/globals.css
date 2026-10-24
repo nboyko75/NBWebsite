@@ -26,3 +26,19 @@
 .dox-media+.project-notes{margin-top:22px}
 @media(max-width:1000px){.dox-media{grid-template-columns:1fr}.dox-media-sidebar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}.dox-media-sidebar .feature-list{margin:0;align-content:center}}
 @media(max-width:760px){.dox-media-sidebar{grid-template-columns:1fr;gap:20px}.dox-media{gap:20px}}
+
+.footer-links{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}.footer-links .text-link{font-size:11px}
+.privacy-header .header-actions{margin-left:auto}
+.privacy-main{max-width:850px;padding-top:38px;padding-bottom:72px}
+.privacy-home{color:var(--azure);margin-bottom:38px}
+.privacy-intro{padding-bottom:32px;border-bottom:1px solid var(--line)}
+.privacy-intro h1{font-size:clamp(34px,5vw,60px);letter-spacing:-.045em;line-height:1.15;overflow-wrap:anywhere}
+.privacy-intro>p:last-child{font-size:18px;line-height:1.8;color:var(--muted);max-width:720px}
+.privacy-date{font-size:13px;color:var(--muted);margin:20px 0}
+.privacy-sections{display:grid;gap:30px;padding-block:34px}
+.privacy-sections h2,.privacy-contact h2{font-size:23px;line-height:1.35;letter-spacing:-.025em;margin-bottom:12px}
+.privacy-sections p,.privacy-contact p{font-size:16px;line-height:1.85;color:var(--muted);overflow-wrap:anywhere}
+.privacy-contact{background:var(--ice);border:1px solid var(--line);border-radius:14px;padding:28px}
+.privacy-contact a{margin-top:16px;color:var(--azure);overflow-wrap:anywhere}
+.privacy-footer{border-top:1px solid var(--line)}
+@media(max-width:760px){.privacy-main{padding-top:24px;padding-bottom:44px}.privacy-home{margin-bottom:28px}.privacy-intro>p:last-child{font-size:16px}.privacy-contact{padding:22px}.privacy-footer{align-items:flex-start}.footer-links{justify-content:center}}

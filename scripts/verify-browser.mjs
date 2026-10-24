@@ -2,6 +2,7 @@ import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
 import { mkdirSync, existsSync } from "node:fs";
 import { assetUrl, basePath } from "../lib/site-path.ts";
+import { privacyCopy } from "../lib/privacy.ts";
 const testUrl = process.env.TEST_URL || `http://127.0.0.1:3000${basePath}/`;
 const options = { headless: true };
 if (process.env.BROWSER_PATH) options.executablePath = process.env.BROWSER_PATH;
@@ -94,7 +95,40 @@ try {
     await page.locator("select").selectOption("en");
     await page.screenshot({ path: `artifacts/mobile-${width}.png`, fullPage: true });
   }
+  // The same policy URL works as a direct Store link and via the localized footer.
+  const privacyPath = assetUrl("/privacy/");
+  await page.locator("select").selectOption("uk");
+  await page.locator(`footer a[href^="${privacyPath}"]`).click();
+  await page.waitForFunction(() => document.documentElement.lang === "uk");
+  assert.equal(await page.locator("h1").innerText(), privacyCopy.uk.title);
+  assert.equal(await page.locator('a[href="mailto:nboyko75@gmail.com"]').count(), 1);
+  for (const width of [1440, 375]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const locale of Object.keys(privacyCopy)) {
+      await page.locator("select").selectOption(locale);
+      await page.waitForFunction(expected => document.documentElement.lang === expected, locale);
+      assert.equal(await page.locator("h1").innerText(), privacyCopy[locale].title);
+      assert.equal(await page.title(), `${privacyCopy[locale].title} — Nick Boiko`);
+      assert.equal(await page.locator(".privacy-sections section").count(), 6);
+      assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `Privacy overflow at ${width}px in ${locale}`);
+    }
+    await page.locator("select").selectOption("en");
+    await page.screenshot({ path: `artifacts/privacy-${width}.png`, fullPage: true });
+  }
+  await page.locator("select").selectOption("de");
+  await page.reload({ waitUntil: "networkidle" });
+  assert.equal(await page.locator("h1").innerText(), privacyCopy.de.title);
+  await page.locator(".privacy-home").click();
+  await page.waitForFunction(() => document.documentElement.lang === "de");
+  assert.equal(await page.locator(".gallery").count(), 1);
+  const noScript = await browser.newContext({ javaScriptEnabled: false });
+  const staticPage = await noScript.newPage();
+  const response = await staticPage.goto(new URL(privacyPath, testUrl).href);
+  assert.equal(response.status(), 200);
+  assert.equal(await staticPage.locator("h1").innerText(), "Privacy policy");
+  assert.equal(await staticPage.locator(".privacy-sections section").count(), 6, "Policy readable without JavaScript");
+  await noScript.close();
   assert.deepEqual(errors, [], "Browser runtime errors");
   assert.deepEqual(missing, [], "Missing assets");
-  console.log("PASS: all 11 locales, language persistence, desktop/mobile layouts, gallery, dialog keyboard/focus, deferred mini player, enlarged video position/volume, and media availability. No runtime errors or missing assets.");
+  console.log("PASS: all 11 locales, language persistence, desktop/mobile layouts, gallery, dialog keyboard/focus, deferred mini player, enlarged video position/volume, media availability, privacy navigation and static policy without JavaScript. No runtime errors or missing assets.");
 } finally { await browser.close(); }

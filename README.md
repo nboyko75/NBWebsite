@@ -1,6 +1,6 @@
 # Nick Boiko — developer portfolio
 
-A responsive single-page portfolio built with React 19, Next.js 16 App Router, and TypeScript. It exports a static site; no backend or external services are needed at runtime.
+A responsive portfolio with a dedicated privacy policy page, built with React 19, Next.js 16 App Router, and TypeScript. It exports a static site; no backend or external services are needed at runtime.
 
 ## Run
 
@@ -86,7 +86,30 @@ Add your files and rebuild. The screenshot replaces the illustrated placeholder 
 
 ## Editing
 
+### App privacy policy
+
+The standalone `/NBWebsite/privacy/` page is linked from the portfolio footer and
+supports all eleven site languages. Its English text is included in the static
+HTML, so the policy can be read without JavaScript, cookies, or a sign-in.
+
+After deploying through the existing GitHub Pages workflow, use this URL in each
+app's Microsoft Partner Center privacy policy field:
+
+https://nboyko75.github.io/NBWebsite/privacy/
+
+The policy covers apps published by Nick Boiko that link to it, including
+Pdf&DocExplorer and Excel-utils. The publisher confirmed that these apps process
+files locally and do not transmit app data to the developer or third parties.
+Support correspondence and independent third-party services are described separately.
+Only reuse this policy for apps with these data practices. Update the text in
+`lib/privacy.ts` (all locales) and its revision date whenever practices change.
+Adding this page locally does not deploy it; publishing uses the existing workflow.
+
+### Source files
+
 - `app/portfolio.tsx`: sections, gallery, modal video players, and navigation.
+- `app/privacy/`: standalone app privacy policy page and language selection.
+- `lib/privacy.ts`: localized policy text, contact address, and revision date.
 - `app/globals.css`: responsive design and reduced-motion support.
 - `lib/i18n.ts`: translations and language negotiation. All dictionaries must have the same fields; tests check full coverage.
 - `app/page.tsx`: build-time optional media detection.
