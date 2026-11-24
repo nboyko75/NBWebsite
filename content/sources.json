@@ -55,5 +55,24 @@
     "manifest": "lib/screenshot-manifest.json",
     "localeMapping": "lib/screenshot-config.ts",
     "note": "User-supplied images used without altering their content; Korean uses the English us folder. Earlier Store screenshot URLs above describe the retained legacy assets."
+  },
+  "formExtractor": {
+    "added": "2026-11-24",
+    "title": "FormExtractor",
+    "documentation": "D:/Projects/FormExtractor/README.md",
+    "requirements": "D:/Projects/FormExtractor/store/AppxManifest.xml",
+    "trailer": {
+      "source": "D:/Projects/Doc/FormExtractor/Video/FormExtractor_Trailer.mp4",
+      "file": "public/media/formextractor/trailer.mp4",
+      "durationSeconds": 96.942993
+    },
+    "poster": {
+      "file": "public/media/formextractor/trailer-poster.jpg",
+      "frameSeconds": 15
+    },
+    "icon": {
+      "source": "D:/Projects/FormExtractor/store/Assets/Logo150.png",
+      "file": "public/media/formextractor/icon.png"
+    }
   }
 }

@@ -11,6 +11,9 @@ export function getScreenshots(locale: Locale) {
 }
 
 export const media = {
+  formTrailer: "/media/formextractor/trailer.mp4",
+  formPoster: "/media/formextractor/trailer-poster.jpg",
+  formIcon: "/media/formextractor/icon.png",
   doxTrailer: "/media/doxexplorer/trailer.mp4",
   doxPoster: "/media/doxexplorer/trailer-poster.jpg",
   doxIcon: "/media/doxexplorer/icon.png",

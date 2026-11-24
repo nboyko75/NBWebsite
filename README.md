@@ -40,6 +40,19 @@ The eleven locales were verified against `D:/Projects/NBWebSite/docs/README.md` 
 - Original trailer copied from `D:/Projects/NBWebSite/Trailer4_2.mp4` to `public/media/doxexplorer/trailer.mp4` (about 101 MB / 7 min 28 sec). The compact player loads the video only on play; its enlarge button opens a larger dialog at the same playback position. Closing the dialog keeps the position and leaves playback paused. The poster is extracted from the supplied video.
 - DM Sans font files are locally hosted; license is in `public/fonts/OFL.txt`.
 
+### FormExtractor
+
+The FormExtractor section follows the DocExplorer presentation and includes copy
+in all eleven website languages. Product details come from the local app README
+and Windows package manifest; provenance is recorded in `content/sources.json`.
+The supplied `D:/Projects/Doc/FormExtractor/Video/FormExtractor_Trailer.mp4` is
+bundled unchanged at `public/media/formextractor/trailer.mp4` (about 21 MB,
+97 seconds). Its poster is extracted at 15 seconds, and the icon comes from the
+app's Store assets. Playback is deferred until requested. Enlarging preserves
+position and volume; closing returns the position to the paused inline player.
+Starting either app's inline trailer pauses the other. A Store download link can
+be added once FormExtractor's public listing URL is available.
+
 ### Localized DoxExplorer screenshots
 
 The gallery uses all `Screenshot<number>.png` files in each corresponding folder

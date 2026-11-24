@@ -22,8 +22,8 @@ test("language negotiation handles browser regions and original app locale names
   for (const [input, expected] of Object.entries(cases)) assert.equal(resolveLocale(input), expected);
   assert.equal(resolveLocale(null), null);
 });
-test("all required DoxExplorer media is bundled", () => {
-  for (const file of [media.doxIcon, media.doxPoster, media.doxTrailer]) {
+test("all required application media is bundled", () => {
+  for (const file of [media.doxIcon, media.doxPoster, media.doxTrailer, media.formIcon, media.formPoster, media.formTrailer]) {
     assert.ok(existsSync(path.join(process.cwd(), "public", file)), `Missing ${file}`);
   }
 });

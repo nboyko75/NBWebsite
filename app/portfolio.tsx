@@ -25,7 +25,7 @@ function Icon({ name, className = "" }: { name: IconName; className?: string }) 
 const STORE = "https://apps.microsoft.com/detail/9ns0crbdgtv6";
 const REPO = "https://github.com/nboyko75/Excel-utils";
 const PROFILE = "https://github.com/nboyko75";
-type Modal = "dox-video" | "excel-video" | "image" | null;
+type Modal = "dox-video" | "form-video" | "excel-video" | "image" | null;
 
 export default function Portfolio({ excelMedia }: { excelMedia: { image: boolean; trailer: boolean; poster: boolean } }) {
   const [locale, setLocale] = useState<Locale>("en");
@@ -33,6 +33,9 @@ export default function Portfolio({ excelMedia }: { excelMedia: { image: boolean
   const [modal, setModal] = useState<Modal>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const miniVideo = useRef<HTMLVideoElement>(null);
+  const formVideo = useRef<HTMLVideoElement>(null);
+  const formTrailerTime = useRef(0);
+  const [formTrailerStarted, setFormTrailerStarted] = useState(false);
   const modalVideo = useRef<HTMLVideoElement>(null);
   const trailerTime = useRef(0);
   const [trailerStarted, setTrailerStarted] = useState(false);
@@ -79,16 +82,22 @@ export default function Portfolio({ excelMedia }: { excelMedia: { image: boolean
       if (miniVideo.current.readyState >= 1) trailerTime.current = miniVideo.current.currentTime;
       miniVideo.current.pause();
     }
+    if (formVideo.current) {
+      if (formVideo.current.readyState >= 1) formTrailerTime.current = formVideo.current.currentTime;
+      formVideo.current.pause();
+    }
     setModal(value);
   }
   function closeModal() {
-    if (modal === "dox-video" && modalVideo.current) {
-      trailerTime.current = modalVideo.current.currentTime;
+    const inlineVideo = modal === "form-video" ? formVideo.current : miniVideo.current;
+    const position = modal === "form-video" ? formTrailerTime : trailerTime;
+    if ((modal === "dox-video" || modal === "form-video") && modalVideo.current) {
+      position.current = modalVideo.current.currentTime;
       modalVideo.current.pause();
-      if (miniVideo.current) {
-        if (miniVideo.current.readyState >= 1) miniVideo.current.currentTime = trailerTime.current;
-        miniVideo.current.volume = modalVideo.current.volume;
-        miniVideo.current.muted = modalVideo.current.muted;
+      if (inlineVideo) {
+        if (inlineVideo.readyState >= 1) inlineVideo.currentTime = position.current;
+        inlineVideo.volume = modalVideo.current.volume;
+        inlineVideo.muted = modalVideo.current.muted;
       }
     }
     dialog.current?.close();
@@ -108,13 +117,13 @@ export default function Portfolio({ excelMedia }: { excelMedia: { image: boolean
       <section className="hero container" aria-labelledby="hero-title">
         <div className="eyebrow"><span className="status-dot" />{copy.role}</div>
         <div className="hero-grid"><h1 id="hero-title">{copy.hero1}<br /><span>{copy.hero2}</span></h1><div className="hero-intro"><p>{copy.intro}</p><a href="#work" className="button primary">{copy.explore}<Icon name="arrow" /></a><a href={PROFILE} target="_blank" rel="noreferrer" className="text-link"><Icon name="github" />{copy.github}<Icon name="up" /></a></div></div>
-        <div className="hero-bottom"><span>Pdf&DocExplorer<span className="tiny-cross">+</span>Excel-utils</span><span className="scroll-mark" aria-hidden="true">↓</span></div>
+        <div className="hero-bottom"><span>Pdf&DocExplorer<span className="tiny-cross">+</span>FormExtractor<span className="tiny-cross">+</span>Excel-utils</span><span className="scroll-mark" aria-hidden="true">↓</span></div>
       </section>
 
       <section className="work-section container" id="work" aria-labelledby="work-title">
         <div className="section-heading"><div><div className="eyebrow">01 / {copy.work}</div><h2 id="work-title">{copy.selected}</h2></div><p>{copy.selectedDesc}</p></div>
         <article className="dox-project" aria-labelledby="dox-title">
-          <div className="project-topline"><span className="eyebrow"><span className="status-dot" />{copy.desktop}</span><span className="project-number">01 — 02</span></div>
+          <div className="project-topline"><span className="eyebrow"><span className="status-dot" />{copy.desktop}</span><span className="project-number">01 — 03</span></div>
           <div className="dox-intro"><div><div className="app-name"><img src={assetUrl(media.doxIcon)} alt="" width="40" height="40" /><h3 id="dox-title">Pdf&DocExplorer</h3></div><h4 className="project-tagline">{copy.docTagline}</h4></div><div className="project-description"><p>{copy.docDescription}</p><div className="project-actions"><a href={STORE} className="button primary" target="_blank" rel="noreferrer"><Icon name="windows" />{copy.store}<Icon name="up" /></a></div></div></div>
           <div className="dox-media">
           <div className="gallery" aria-label={copy.gallery}>
@@ -126,7 +135,7 @@ export default function Portfolio({ excelMedia }: { excelMedia: { image: boolean
           <div className="dox-media-sidebar">
             <section className="trailer-card" aria-label={`Pdf&DocExplorer — ${copy.watch}`}>
               <div className="trailer-screen">
-                <video ref={miniVideo} controls={trailerStarted} playsInline preload="none" aria-label={`Pdf&DocExplorer — ${copy.watch}`} poster={assetUrl(media.doxPoster)} src={assetUrl(media.doxTrailer)} onPlay={() => setTrailerStarted(true)} onLoadedMetadata={event => { event.currentTarget.currentTime = trailerTime.current; }}>
+                <video ref={miniVideo} controls={trailerStarted} playsInline preload="none" aria-label={`Pdf&DocExplorer — ${copy.watch}`} poster={assetUrl(media.doxPoster)} src={assetUrl(media.doxTrailer)} onPlay={() => { setTrailerStarted(true); formVideo.current?.pause(); }} onLoadedMetadata={event => { event.currentTarget.currentTime = trailerTime.current; }}>
                   <a href={assetUrl(media.doxTrailer)}>{copy.trailerUnavailable}</a>
                 </video>
                 {!trailerStarted && <button className="trailer-play" onClick={() => { setTrailerStarted(true); void miniVideo.current?.play().catch(() => {}); }}><span className="trailer-play-icon"><Icon name="play" /></span><span>{copy.watch}</span></button>}
@@ -139,26 +148,45 @@ export default function Portfolio({ excelMedia }: { excelMedia: { image: boolean
           <div className="project-notes"><p>{copy.requirements}</p></div>
         </article>
 
+        <article className="dox-project form-project" id="formextractor" aria-labelledby="form-title">
+          <div className="project-topline"><span className="eyebrow"><span className="status-dot" />{copy.desktop}</span><span className="project-number">02 — 03</span></div>
+          <div className="dox-intro"><div><div className="app-name"><img src={assetUrl(media.formIcon)} alt="" width="40" height="40" /><h3 id="form-title">FormExtractor</h3></div><h4 className="project-tagline">{copy.formTagline}</h4></div><div className="project-description"><p>{copy.formDescription}</p></div></div>
+          <div className="dox-media">
+            <section className="trailer-card" aria-label={`FormExtractor — ${copy.watch}`}>
+              <div className="trailer-screen">
+                <video ref={formVideo} controls={formTrailerStarted} playsInline preload="none" aria-label={`FormExtractor — ${copy.watch}`} poster={assetUrl(media.formPoster)} src={assetUrl(media.formTrailer)} onPlay={() => { setFormTrailerStarted(true); miniVideo.current?.pause(); }} onLoadedMetadata={event => { event.currentTarget.currentTime = formTrailerTime.current; }}>
+                  <a href={assetUrl(media.formTrailer)}>{copy.trailerUnavailable}</a>
+                </video>
+                {!formTrailerStarted && <button className="trailer-play" onClick={() => { setFormTrailerStarted(true); void formVideo.current?.play().catch(() => {}); }}><span className="trailer-play-icon"><Icon name="play" /></span><span>{copy.watch}</span></button>}
+              </div>
+              <div className="trailer-footer"><p>{copy.screenshotNote}</p><button className="button trailer-expand" onClick={() => openModal("form-video")}><Icon name="expand" />{copy.enlargeVideo}</button></div>
+            </section>
+            <div className="dox-media-sidebar"><ul className="feature-list">{[copy.formFeature1, copy.formFeature2, copy.formFeature3].map(feature => <li key={feature}><span className="check-circle"><Icon name="check" /></span>{feature}</li>)}</ul></div>
+          </div>
+          <div className="project-notes"><p>{copy.formRequirements}</p></div>
+        </article>
+
         <article className="excel-project" aria-labelledby="excel-title"><div className="excel-content"><div className="eyebrow">{copy.excelCategory}</div><div className="app-name"><span className="excel-icon" aria-hidden="true">X</span><h3 id="excel-title">Excel-utils</h3></div><h4 className="project-tagline">{copy.excelTagline}</h4><p>{copy.excelDescription}</p><div className="excel-actions"><a href={REPO} target="_blank" rel="noreferrer" className="button light"><Icon name="github" />{copy.repo}<Icon name="up" /></a>{excelMedia.trailer && <button className="button text-button" onClick={() => openModal("excel-video")}><Icon name="play" />{copy.watch}</button>}</div></div>
           <div className={`excel-visual ${excelMedia.image ? "has-image" : ""}`}>
-            <span className="project-number">02 — 02</span>
+            <span className="project-number">03 — 03</span>
             {excelMedia.image ? <img className="excel-presentation" src={assetUrl(media.excelImage)} alt={`Excel-utils — ${copy.overview}`} width="1280" height="800" loading="lazy" /> : <><div className="paper-composition" aria-hidden="true"><div className="paper paper-left"><span className="paper-header" />{Array.from({ length: 7 }, (_, i) => <span className="paper-row" key={i} />)}<span className="paper-page">01</span></div><span className="mirror-line" /><div className="paper paper-right"><span className="paper-header" />{Array.from({ length: 7 }, (_, i) => <span className="paper-row" key={i} />)}<span className="paper-page">02</span></div><span className="floating-excel">X</span></div><div className="coming-soon"><span className="small-pill">{copy.mediaSoon}</span><p>{copy.mediaSoonDesc}</p></div></>}
           </div>
         </article>
       </section>
 
-      <section className="about-section container" id="about" aria-labelledby="about-title"><div><div className="eyebrow">02 / {copy.about}</div><h2 id="about-title">{copy.aboutTitle}</h2></div><div className="about-copy"><div className="author"><span className="author-avatar" aria-hidden="true">nb.</span><span>Nick Boiko<small>Pdf&DocExplorer · Excel-utils</small></span></div><p>{copy.aboutDescription}</p><div className="about-links"><a href={PROFILE} target="_blank" rel="noreferrer" className="text-link">{copy.github}<Icon name="up" /></a><a href="mailto:nboyko75@gmail.com" className="text-link about-email"><Icon name="mail" />nboyko75@gmail.com</a></div></div></section>
+      <section className="about-section container" id="about" aria-labelledby="about-title"><div><div className="eyebrow">02 / {copy.about}</div><h2 id="about-title">{copy.aboutTitle}</h2></div><div className="about-copy"><div className="author"><span className="author-avatar" aria-hidden="true">nb.</span><span>Nick Boiko<small>Pdf&DocExplorer · FormExtractor · Excel-utils</small></span></div><p>{copy.aboutDescription}</p><div className="about-links"><a href={PROFILE} target="_blank" rel="noreferrer" className="text-link">{copy.github}<Icon name="up" /></a><a href="mailto:nboyko75@gmail.com" className="text-link about-email"><Icon name="mail" />nboyko75@gmail.com</a></div></div></section>
       <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="container contact-inner"><div><div className="eyebrow">03 / {copy.contact}</div><h2 id="contact-title">{copy.contactTitle}</h2><p>{copy.contactDescription}</p><p><a href="mailto:nboyko75@gmail.com" className="text-link">nboyko75@gmail.com</a></p></div><a href="mailto:nboyko75@gmail.com" className="button primary">{copy.email}<Icon name="up" /></a></div></section>
     </main>
     <footer className="container"><a className="brand footer-brand" href="#top"><span className="monogram">nb<span>.</span></span><span>© {new Date().getFullYear()} Nick Boiko</span></a><span>{copy.footer}</span><div className="footer-links"><a href={`${assetUrl("/privacy/")}?lang=${encodeURIComponent(locale)}`} className="text-link">{privacyCopy[locale].title}</a><a href="#top" className="text-link">{copy.backTop}<span aria-hidden="true">↑</span></a></div></footer>
     <dialog ref={dialog} className="media-dialog" aria-label={modal === "image" ? currentScreenshot.caption : copy.watch} onCancel={event => { event.preventDefault(); closeModal(); }} onClick={event => { if (event.target === event.currentTarget) closeModal(); }} onKeyDown={event => { if (modal === "image" && event.key === "ArrowLeft") moveImage(-1); if (modal === "image" && event.key === "ArrowRight") moveImage(1); }}>
-      {modal && <div className="dialog-content"><div className="dialog-toolbar"><span>{modal === "image" ? currentScreenshot.caption : `${modal === "dox-video" ? "Pdf&DocExplorer" : "Excel-utils"} — ${copy.watch}`}</span><button onClick={closeModal} aria-label={copy.close} autoFocus><Icon name="close" /></button></div>{modal === "image" ? <><img src={assetUrl(currentScreenshot.src)} alt={`Pdf&DocExplorer — ${currentScreenshot.caption}`} /><div className="dialog-gallery-controls"><button onClick={() => moveImage(-1)} aria-label={copy.previous}>←</button><span>{galleryIndex + 1} / {screenshots.length}</span><button onClick={() => moveImage(1)} aria-label={copy.next}>→</button></div></> : <video ref={modalVideo} controls autoPlay playsInline preload="none" onLoadedMetadata={event => {
-        if (modal === "dox-video") {
-          event.currentTarget.currentTime = trailerTime.current;
-          event.currentTarget.volume = miniVideo.current?.volume ?? 1;
-          event.currentTarget.muted = miniVideo.current?.muted ?? false;
+      {modal && <div className="dialog-content"><div className="dialog-toolbar"><span>{modal === "image" ? currentScreenshot.caption : `${modal === "dox-video" ? "Pdf&DocExplorer" : modal === "form-video" ? "FormExtractor" : "Excel-utils"} — ${copy.watch}`}</span><button onClick={closeModal} aria-label={copy.close} autoFocus><Icon name="close" /></button></div>{modal === "image" ? <><img src={assetUrl(currentScreenshot.src)} alt={`Pdf&DocExplorer — ${currentScreenshot.caption}`} /><div className="dialog-gallery-controls"><button onClick={() => moveImage(-1)} aria-label={copy.previous}>←</button><span>{galleryIndex + 1} / {screenshots.length}</span><button onClick={() => moveImage(1)} aria-label={copy.next}>→</button></div></> : <video ref={modalVideo} controls autoPlay playsInline preload="none" onLoadedMetadata={event => {
+        if (modal === "dox-video" || modal === "form-video") {
+          const inlineVideo = modal === "form-video" ? formVideo.current : miniVideo.current;
+          event.currentTarget.currentTime = modal === "form-video" ? formTrailerTime.current : trailerTime.current;
+          event.currentTarget.volume = inlineVideo?.volume ?? 1;
+          event.currentTarget.muted = inlineVideo?.muted ?? false;
         }
-      }} poster={modal === "dox-video" ? assetUrl(media.doxPoster) : excelMedia.poster ? assetUrl(media.excelPoster) : undefined} src={modal === "dox-video" ? assetUrl(media.doxTrailer) : assetUrl(media.excelTrailer)}><a href={modal === "dox-video" ? assetUrl(media.doxTrailer) : assetUrl(media.excelTrailer)}>{copy.trailerUnavailable}</a></video>}</div>}
+      }} poster={modal === "dox-video" ? assetUrl(media.doxPoster) : modal === "form-video" ? assetUrl(media.formPoster) : excelMedia.poster ? assetUrl(media.excelPoster) : undefined} src={modal === "dox-video" ? assetUrl(media.doxTrailer) : modal === "form-video" ? assetUrl(media.formTrailer) : assetUrl(media.excelTrailer)}><a href={modal === "dox-video" ? assetUrl(media.doxTrailer) : modal === "form-video" ? assetUrl(media.formTrailer) : assetUrl(media.excelTrailer)}>{copy.trailerUnavailable}</a></video>}</div>}
     </dialog>
   </>;
 }
